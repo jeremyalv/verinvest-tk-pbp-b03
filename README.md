@@ -1,12 +1,12 @@
 # Project Documentation
 
 ## Nama Anggota Kelompok
-Alicia Kirana Utomo
-Elsa Giana Abigail Sitompul
-Jeremy Alva Prathama
-Khairinka Rania Lizadhi
-Ratu Almas Naurah Anvilen
-Muhammad Al Rivalda
+1. Alicia Kirana Utomo
+2. Elsa Giana Abigail Sitompul
+3. Jeremy Alva Prathama
+4. Khairinka Rania Lizadhi
+5. Ratu Almas Naurah Anvilen
+6. Muhammad Al Rivalda
 
 ## Link Aplikasi Heroku
 [Verinvest](https://verinvest.herokuapp.com/)
@@ -53,7 +53,9 @@ Berikut adalah modul yang akan kami implementasikan
 
 ## Role Pengguna
 1. Regular User
+   
 Merupakan pengguna biasa dengan kemampuan menavigasi aplikasi, membuat post, menghapus post sendiri, berinteraksi dengan post (upvote, comment, share link), namun tidak dapat memberikan Expert Verification terhadap suatu post.
 
 2. Domain Expert
+
 Memiliki semua kemampuan Regular User, ditambah dengan kemampuan untuk memberikan Expert Verification terhadap suatu post yang ada. Expert Verification akan sangat berpengaruh terhadap status apakah suatu post tervalidasi sebagai berita benar atau tidak.
