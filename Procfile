@@ -1,0 +1,1 @@
+web: gunicorn verinvest.wsgi --log-file -
