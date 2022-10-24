@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'collection',
     'forum_item',
     'edukasi_item',
+    'about',
 ]
 
 MIDDLEWARE = [
