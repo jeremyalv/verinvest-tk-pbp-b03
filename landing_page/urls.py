@@ -1,4 +1,3 @@
-from tkinter import N
 from django.urls import path
 from landing_page.views import (index, register, login_user, logout_user)
 
