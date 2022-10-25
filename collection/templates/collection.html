@@ -33,7 +33,7 @@
     <div id="collectionCards" class="w-full md:w-10/12 flex flex-col items-center justify-center">
         <div id="forumCollection" class="pb-12 md:pb-24 w-full">
             <div id="forumCollectionHeader" class="flex justify-center md:justify-start hover:underline hover:decoration-primary pb-4 md:pb-8">
-                <a href="#" class="text-3xl md:text-4xl font-bold dark:text-white pr-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-black focus:ring-4 focus:ring-primary dark:focus:ring-primary">
+                <a href="{% url 'collection:forum' %}" class="text-3xl md:text-4xl font-bold dark:text-white pr-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-black">
                     Forum
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -41,7 +41,7 @@
                 </a>
             </div>
 
-            <div id="forumCollecionBody" class="flex flex-col items-center md:grid md:grid-cols-3 md:grid-flow-row md:gap-4">
+            <div id="forumCollectionBody" class="flex flex-col items-center md:grid md:grid-cols-3 md:grid-flow-row md:gap-4">
                 {% for i in "123456789"|make_list %}
                     <div class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
@@ -60,7 +60,7 @@
         <div id="edukasiCollection" class="pb-12 md:pb-24 w-full">
             <div id="edukasiCollectionHeader" class="flex justify-center md:justify-start hover:underline hover:decoration-primary pb-4 md:pb-8 ">
                 <!-- TO CONVERT AS LINK -->
-                  <a href="#" class="text-3xl md:text-4xl font-bold dark:text-white pr-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-black focus:ring-4 focus:ring-primary dark:focus:ring-primary">
+                  <a href="{% url 'collection:education' %}" class="text-3xl md:text-4xl font-bold dark:text-white pr-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-black">
                     Education
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
