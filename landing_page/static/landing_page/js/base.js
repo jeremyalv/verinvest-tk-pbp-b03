@@ -10,3 +10,5 @@ hamburgerNavbar.addEventListener('click', () => {
     const navbarItems = document.querySelector("#mobile-menu-2")
     navbarItems.classList.toggle("hidden") 
 })
+
+
