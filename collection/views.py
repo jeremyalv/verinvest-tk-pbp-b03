@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from collection.models import Post, Comment
+from collection.models import Post
 
 # @login_required
 def show_collection(request):
