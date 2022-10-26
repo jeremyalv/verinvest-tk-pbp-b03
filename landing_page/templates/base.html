@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Add Google APIs -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+  <style>
+    * {
+      font-family: 'Poppins';
+      font-size: 12px;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+  </style>
+
+
+  <!-- Integrate TailwindCSS with CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    "primary": '#27B688',
+                }
+            }
+        }
+    }
+  </script>
+
+  {% block meta %}
+  {% endblock meta %}
+</head>
+
+{% include 'header.html' %}
+
+<body class="min-h-screen flex flex-col"> 
+  {% block content %}
+  {% endblock content %}
+</body>
+
+{% include 'footer.html' %}
+{% load static %}
+<script src="{% static 'landing_page/js/base.js'%}"></script>
+</html>
