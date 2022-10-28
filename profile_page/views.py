@@ -1,10 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+# @login_required
 def show_profile(request):
-    context = {
-        'username' : request.user,
-    }
+    pass
 
-    return render(request, "profile.html", context)
 

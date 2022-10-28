@@ -1,8 +1,8 @@
 from django.urls import path
-from profile_page.views import main, show_watchlist, show_xml, show_json, show_xml_by_id, show_json_by_id
+from profile_page.views import show_profile
 
-app_name = 'mywatchlist'
+app_name = 'profile_page'
 
 urlpatterns = [
-    path('', main, name='show_main'),
+    path('', show_profile, name='show_profile'),
 ]
