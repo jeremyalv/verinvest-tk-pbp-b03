@@ -7,5 +7,5 @@ urlpatterns = [
     path('', show_collection, name='show_collection'),
     path('forum/', forum_archive, name='forum'),
     path('education/', education_archive, name='education'),
-    path('forum/post/', include('forum_item.urls')),
+    path('forum/items/', include('forum_item.urls')),
 ]
