@@ -22,7 +22,8 @@ def create_post(request):
 
         Post.objects.create(
             post_type='forum',
-            author=request.user,
+            # TODO UNCOMMENT
+            # author=request.user,
             title=title,
             content=content,
             upvotes=0,
