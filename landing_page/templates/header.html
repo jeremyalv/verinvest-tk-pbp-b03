@@ -2,7 +2,7 @@
     <!-- TODO IF USER NOT LOGGED IN, DISPLAY LOGIN BUTTONS -->
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       {% load static %}
-      <img src="{% static 'landing_page/img/verinvest_logo_white-1.png' %}" class="mr-3 h-6 sm:h-9" alt="Verinvest Logo White">
+      <img src="{% static 'landing_page/img/verinvest_logo-1.png' %}" class="mr-3 h-6 sm:h-9" alt="Verinvest Logo White">
       
       <div class="flex items-center md:order-2">
         <div id="userDropdownContainer" class="relative">
@@ -18,7 +18,7 @@
             </div>
             <ul class="py-1" aria-labelledby="user-menu-button">
               <li>
-                <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                <a href="{% url 'profile_page:show_profile' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
               </li>
               <li>
                 <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>

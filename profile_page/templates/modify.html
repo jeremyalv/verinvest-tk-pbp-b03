@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+{% endblock meta %}
+
+{% block content %}
+<div class="h-full flex flex-col justify-center items-center text-center px-12 my-auto">
+    <img class="w-24 h-24 rounded-full" src="{% static 'landing_page/img/user.png' %}" alt="user photo">
+
+    <br>
+
+    <div class="overflow-x-auto relative">
+        <table class="w-full text-sm text-left">
+            <tbody>
+                <tr>
+                    <th scope="row" class="py-6 px-8 font-medium text-white-900 whitespace-nowrap text-primary">
+                        Username
+                    </th>
+                    <td class="py-6 px-8 text-black-700">
+                        {{username}}
+                    </td>
+                    <td class="py-6 px-8 text-gray">
+                        <a class = "hover:underline hover:decoration-primary" href="#">Edit</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="py-6 px-8 font-medium text-white-900 whitespace-nowrap text-primary">
+                        Password
+                    </th>
+                    <td class="py-6 px-8 text-black-700">
+                        {{password}}
+                    </td>
+                    <td class="py-6 px-8 text-gray">
+                        <a class = "hover:underline hover:decoration-primary" href="#">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
