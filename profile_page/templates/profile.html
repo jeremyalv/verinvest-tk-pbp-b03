@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    body {
+        background-image: linear-gradient(to bottom right, #98D0AC, #083341);
+        color: #010101;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .section {
+        background-color: #FFFFFF;
+        text-align: center;
+    }
+</style>
+{% block meta %}
+
+<body>
+    <div class = "section">
+        <image></image>
+        <h1>{{ username }}</h1>
+
+        <h2>Forums</h2>
+        <div class = "card">
+            <div class = "card_head">
+                <h3>{{ forum.headline }}</h3>
+                <image></image>
+                <p id = "upvote_count">{{ forum.upvote }}</p>
+            </div>
+
+            <p id = "forum_paragraph">{{ forum.paragraph }}</p>
+        </div>
+    </div>
+</body>
+
+{% endblock content %}
