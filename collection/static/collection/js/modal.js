@@ -15,16 +15,13 @@ openModalBtn.forEach(button => {
 closeModalBtn.forEach(button => {
     button.addEventListener('click', () => {
         const modal = button.closest('#modal');
-        console.log(modal);
         closeModal(modal);
     });
 });
 
 overlay.addEventListener('click', () => {
-    const modals = document.querySelectorAll('#modal.active');
-    modals.forEach(modal => {
-        closeModal(modal);
-    });
+    const modal = document.querySelector('#modal');
+    closeModal(modal);
 });
 
 modalAddTask.addEventListener('click', () => {
@@ -32,19 +29,20 @@ modalAddTask.addEventListener('click', () => {
     const descVal = $("#description-input").val();
 
     if (titleVal == "" || descVal == "") {
+        console.log('title val or desc val is empty')
         if ($("#field-error").length >  0) {
             $("#field-error").remove()
         }
         $("#modal-cta").prepend(`<p id="field-error" class="text-lg py-2 font-base text-rose-500">Please fill the empty fields!</p>`);
     } else {
         $.post({
-            url: 'add/',
+            url: 'forum/items/add',
             type: 'post',
             data: {
                 'title': titleVal,
                 'description': descVal,
             },
-            success: [createSections, loadTasksList],
+            success: [],
         });
 
 
@@ -54,7 +52,7 @@ modalAddTask.addEventListener('click', () => {
         $("#field-error").remove()
 
         // Close modal
-        const modal = modalAddTask.closest("#modal.active");
+        const modal = modalAddTask.closest("#modal");
         closeModal(modal)
     }
 })   
@@ -70,6 +68,7 @@ function openModal(modal) {
 
     overlay.classList.remove('opacity-0');
     overlay.classList.add('opacity-50');
+    overlay.classList.add('z-10');
     overlay.classList.add('pointer-events-auto');
 }
 
@@ -81,6 +80,7 @@ function closeModal(modal) {
     modal.classList.remove('scale-100');
     modal.classList.add('scale-0');
 
+    overlay.classList.remove('z-10');
     overlay.classList.remove('opacity-50');
     overlay.classList.remove('pointer-events-auto');
     overlay.classList.add('opacity-0');
