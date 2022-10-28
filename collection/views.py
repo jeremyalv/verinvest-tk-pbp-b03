@@ -19,7 +19,6 @@ def education_archive(request):
 
     return render(request, 'education.html')
 
-""" fixed ver
 # login required
 def forum_archive(request):
     forum_posts = Post.objects.filter(post_type='forum')
@@ -39,5 +38,4 @@ def education_archive(request):
     }
 
     return render(request, 'education.html', context)
-"""
 
