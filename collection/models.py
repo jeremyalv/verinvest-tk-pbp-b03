@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     post_type = models.CharField(max_length=10)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # TODO UNCOMMENT
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
     
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=100)
     content = models.TextField()
     
     upvotes = models.IntegerField()

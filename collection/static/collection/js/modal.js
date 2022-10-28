@@ -1,8 +1,10 @@
+import { createCollection } from "./collectionOperations.js";
+
 const modal = document.querySelectorAll('#modal');
 const openModalBtn = document.querySelectorAll("[data-modal-target]");
 const closeModalBtn = document.querySelectorAll("[data-close-button]");
 const overlay = document.getElementById("overlay");
-const modalAddTask = document.getElementById("modal-add-task");
+const modalCreatePost = document.getElementById("modal-create-post");
 
 
 openModalBtn.forEach(button => {
@@ -24,35 +26,37 @@ overlay.addEventListener('click', () => {
     closeModal(modal);
 });
 
-modalAddTask.addEventListener('click', () => {
+modalCreatePost.addEventListener('click', () => {
     const titleVal = $("#title-input").val();
-    const descVal = $("#description-input").val();
+    const content = $("#content-input").val();
 
-    if (titleVal == "" || descVal == "") {
+    if (titleVal == "" || content == "") {
         console.log('title val or desc val is empty')
         if ($("#field-error").length >  0) {
             $("#field-error").remove()
         }
         $("#modal-cta").prepend(`<p id="field-error" class="text-lg py-2 font-base text-rose-500">Please fill the empty fields!</p>`);
     } else {
+        console.log("REACHED POST AJAX");
         $.post({
-            url: 'forum/items/add',
+            // Current url: collection/forum/
+            url: 'items/add/',
             type: 'post',
             data: {
                 'title': titleVal,
-                'description': descVal,
+                'content': content,
             },
-            success: [],
+            success: [createCollection],
         });
 
 
         // Clear input box values
         $("#title-input").val("")
-        $("#description-input").val("")
+        $("#content-input").val("")
         $("#field-error").remove()
 
         // Close modal
-        const modal = modalAddTask.closest("#modal");
+        const modal = modalCreatePost.closest("#modal");
         closeModal(modal)
     }
 })   
