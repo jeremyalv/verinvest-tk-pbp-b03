@@ -2,8 +2,8 @@
     <!-- TODO IF USER NOT LOGGED IN, DISPLAY LOGIN BUTTONS -->
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       {% load static %}
-      <img src="{% static 'landing_page/img/verinvest_logo-1.png' %}" class="mr-3 h-6 sm:h-9" alt="Verinvest Logo White">
-      
+      <a href="{% url 'landing_page:index' %}"><img src="{% static 'landing_page/img/verinvest_logo-1.png' %}" class="mr-3 h-6 sm:h-9" alt="Verinvest Logo"></a>
+
       <div class="flex items-center md:order-2">
         <div id="userDropdownContainer" class="relative">
           <button id="userDropdownBtn" type="button" class="flex mr-3 text-sm bg-transparent rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
