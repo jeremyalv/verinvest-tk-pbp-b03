@@ -44,29 +44,29 @@
 
 
 {% block content %}
-<body class="bg-gradient-to-b from-primary via-gray-500 to-primary">
+<body class="bg-primary">
 <div class="h-full flex flex-col justify-center items-center text-center px-12 my-auto">
     <div class = "login pl-24 pr-24 pt-12 pb-12 border border-primary bg-gray-100 rounded">
-        <h1 class="text-3xl">Login</h1>
+        <h1 class="text-3xl pb-9">Login</h1>
 
         <form method="POST" action="">
             {% csrf_token %}
             <table>
                 <tr>
                     <td>Username: </td>
-                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control border py-2 px-3 text-gray-darkset"></td>
                 </tr>
                         
                 <tr>
                     <td>Password: </td>
-                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control border py-2 px-3 text-gray-darkset"></td>
                 </tr>
 
                 <tr>
                     <td></td>
-                    <td><button class="px-4 py-2 bg-primary text-white rounded hover:bg-gray-300">
-                        Loginx 
-                    </button></td>
+                    <td><a href="{% url 'landing_page:index' %}">
+                        <input class="form-submit px-4 py-2 bg-primary text-white rounded hover:bg-gray-300" type="submit" value="Login">
+                    </a></td>
                 </tr>
             </table>
         </form>
