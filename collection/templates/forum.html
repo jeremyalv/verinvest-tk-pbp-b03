@@ -31,11 +31,11 @@
             </div>
             <div class="flex flex-col pb-4 mb-4 md:pb-8 md:mb-8">
                 <label class="text-lg md:text-2xl pb-2 md:pb-4 font-bold">Description</label>
-                <input required id="description-input" type="text" name="description" placeholder="Enter description"
+                <input required id="content-input" type="text" name="description" placeholder="Enter description"
                                 class="border rounded focus:border-2 focus:border-primary px-2 py-2 mb-2 h-10 leading-4 md:py-16">
             </div>
             <div id="modal-cta" class="flex flex-col bottom-16 mb-8 justify-center items-center">
-                <button id="modal-add-task" type="submit" class="text-white bg-primary 
+                <button id="modal-create-post" type="submit" class="text-white bg-primary 
                 hover:bg-primary focus:ring-4 focus:ring-primary 
                 font-medium rounded-lg text-sm md:text-lg px-5 md:px-8 py-2.5 md:py-3 mr-2 md:mr-4 
                 mb-2 dark:bg-primary dark:hover:bg-primary 
@@ -65,12 +65,16 @@
                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
                 <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary focus:border-primary" placeholder="Search Discussions..." required="">
-                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-4 py-2">Search</button>
+
+                <!-- TODO IMPLEMENT DJANGO FORMS -->
+                <a href="#}">
+                    <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm px-4 py-2">Search</button>
+                </a>
             </div>
         </form>
 
         <div>
-            <button id="add-post" data-modal-target="#modal" type="button" class="py-2.5 px-5 md:px-6 text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm text-center inline-flex items-center mr-2">
+            <button id="add-post" data-modal-target="#modal" type="button" class="py-2.5 px-5 min-w-full md:px-6 text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm text-center inline-flex items-center mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>                  
@@ -102,5 +106,5 @@
 </div>
 
 {% load static %}
-<script src="{% static 'collection/js/modal.js' %}"></script>
+<script type="module" src="{% static 'collection/js/modal.js' %}"></script>
 {% endblock content %}

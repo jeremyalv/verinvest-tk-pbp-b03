@@ -12,3 +12,7 @@ class ForumComment(models.Model):
     upvotes = models.IntegerField()
     saved = models.IntegerField()
     comments_count = models.IntegerField()
+
+class ForumOpvote(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    upvoter = models.ForeignKey(User, on_delete=models.CASCADE)
