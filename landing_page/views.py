@@ -17,9 +17,7 @@ def index(request):
         'user_loggedin': user_loggedin,
     }
         
-        return render(request, 'index.html', context)
-    else:
-        return render(request,"landingpage.html")
+    return render(request, 'index.html', context)
     
 
 def register(request):
