@@ -1,0 +1,87 @@
+{% load static %}
+<head>
+    {% block meta %}
+    <title>Login</title>
+    {% endblock meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Add Google APIs -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    
+  
+    <style>
+      * {
+        font-family: 'Poppins';
+        font-size: 12px;
+      }
+  
+      *, *::before, *::after {
+          box-sizing: border-box;
+      }
+    </style>
+      <!-- Integrate TailwindCSS with CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="{% static 'landing_page/js/base.js'%}"></script>
+  
+  <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    "primary": '#27B688',
+                },
+                minHeight: {
+                  '6/12': '50%',
+                  '9/12': '75%',
+                }
+            }
+        }
+    }
+    </script>
+</head>
+
+
+{% block content %}
+<body class="bg-gradient-to-b from-primary via-gray-500 to-primary">
+<div class="h-full flex flex-col justify-center items-center text-center px-12 my-auto">
+    <div class = "login pl-24 pr-24 pt-12 pb-12 border border-primary bg-gray-100 rounded">
+        <h1 class="text-3xl">Login</h1>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                </tr>
+                        
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><button class="px-4 py-2 bg-primary text-white rounded hover:bg-gray-300">
+                        Loginx 
+                    </button></td>
+                </tr>
+            </table>
+        </form>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}     
+            
+        Belum mempunyai akun? <a href="#" class="text-primary hover:text-gray-500">Buat Akun</a>
+    </div>
+ </div>
+
+{% endblock content %}
+</body>
