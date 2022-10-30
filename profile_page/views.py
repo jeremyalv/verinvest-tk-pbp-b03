@@ -1,7 +1,14 @@
 from django.shortcuts import render
 
-# @login_required
 def show_profile(request):
-    pass
+    context = {
+        'username' : request.user
+    }
 
+    return render(request, "profile.html", context)
 
+def edit_profile(request):
+    context = {
+        'username' : request.user
+    }
+    return render(request, "modify.html", context)

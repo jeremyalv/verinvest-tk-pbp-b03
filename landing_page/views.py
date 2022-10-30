@@ -12,11 +12,14 @@ def index(request):
     if request.user.is_authenticated:
         user_loggedin = True
     
-    context = {
-        'user_loggedin': user_loggedin,
-    }
+        context = {
+            'user_loggedin': user_loggedin,
+        }
+        
+        return render(request, 'index.html', context)
+    else:
+        return render(request,"landingpage.html")
     
-    return render(request, 'index.html', context)
 
 def register(request):
     form = UserCreationForm()
