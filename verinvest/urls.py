@@ -24,5 +24,4 @@ urlpatterns = [
     path('collections/', include('collection.urls')),
     path('profile/', include('profile_page.urls')),
     path('about/', include('about.urls')),
-    path('edukasi/', include('edukasi_item.urls'))
 ]

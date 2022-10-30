@@ -8,4 +8,5 @@ urlpatterns = [
     path('forum/', forum_archive, name='forum'),
     path('education/', education_archive, name='education'),
     path('forum/post/', include('forum_item.urls')),
+    path('education/post/', include('edukasi_item.urls')),
 ]

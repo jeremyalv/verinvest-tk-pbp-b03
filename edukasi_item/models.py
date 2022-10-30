@@ -7,7 +7,7 @@ class EdukasiComment(models.Model):
     commenter = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
     
-    content = models.TextField(max_length=255)
+    content = models.TextField()
 
     upvotes = models.IntegerField()
-    saved = models.IntegerField()
+    # saved = models.IntegerField()

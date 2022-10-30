@@ -1,8 +1,10 @@
 from django.urls import path
-from edukasi_item.views import show_edukasi_item
+from edukasi_item.views import view_post
 
 app_name = 'edukasi_item'
 
 urlpatterns = [
-    path('', show_edukasi_item, name='show_edukasi_item'),
+    path('<int:id>', view_post, name='view'),
+#     path('add/', create_post, name='add'),
+#     path('delete/<int:id>', delete_post, name='delete'),
 ]
