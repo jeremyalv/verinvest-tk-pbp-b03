@@ -1,5 +1,5 @@
 from operator import truediv
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -45,7 +45,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
 
-            return HttpResponseRedirect(reverse('landing_page:index'))
+            redirect(reverse('landing_page:index'))
     
     return render(request, 'login.html')
 
@@ -53,5 +53,5 @@ def login_user(request):
 def logout_user(request):
     logout(request)
 
-    return HttpResponseRedirect(reverse('landing_page:login'))
+    return redirect(reverse('landing_page:login'))
 
