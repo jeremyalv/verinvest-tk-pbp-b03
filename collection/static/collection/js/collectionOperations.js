@@ -26,8 +26,7 @@ function createCollection() {
             // Append card item to appropriate collection
             let id = data[i].pk;
             let title = data[i].fields.title;
-            // TODO let username = data[i].fields.author.get_username();
-            let username = 'userxx';
+            let username = data[i].fields.author.get_username();
 
             let viewers = data[i].fields.viewers;
             let upvotes = data[i].fields.upvotes;
