@@ -4,49 +4,64 @@
 <div id="loginPageContainer" class="flex flex-col items-center justify-center px-12">
     <div id="loginPage" class="w-8/12">
         <div id="loginHeader" class="pb-4 md:pb-12">
-            <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-gray-900 dark:text-white">Join us and ignite <span class="text-3xl md:text-4xl lg:text-5xl underline underline-offset-3 decoration-4 decoration-primary dark:decoration-primary">smart discussions</span> nationwide.</h1>
-            <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+            <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-gray-900">Join us and ignite <span class="text-3xl md:text-4xl lg:text-5xl underline underline-offset-3 decoration-4 decoration-primary">smart discussions</span> nationwide.</h1>
+            <p class="text-lg font-normal text-gray-500 lg:text-xl">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
         </div>
     
         <form method="post" id="loginForm">
             {% csrf_token %}
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First name</label>
-                    <input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="John" required="">
+                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">
+                        {{ form.first_name.label_tag }}
+                    </label>
+                    <div class="">
+                        {{ form.first_name }}
+                    </div>
+                    <!-- <input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="John" required=""> -->
                 </div>
                 <div>
-                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last name</label>
-                    <input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Doe" required="">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">
+                        {{ form.last_name.label_tag }}
+                    </label>
+                    <div class="">
+                        {{ form.last_name }}
+                    </div>
+                    <!-- <input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="Doe" required=""> -->
                 </div>
     
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">I am a...</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">I am a...</label>
                     <div class="flex items-center mb-4">
-                        <input checked="" id="casual_user" type="radio" value="" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="casual_user" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Casual User</label>
+                        <input checked="" id="casual_user" type="radio" value="" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2">
+                        <label for="casual_user" class="ml-2 text-sm font-medium text-gray-900">Casual User</label>
                     </div>
                     <div class="flex items-center">
-                        <input id="domain_expert" type="radio" value="" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="domain_expert" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Domain Expert</label>
+                        <input id="domain_expert" type="radio" value="" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2">
+                        <label for="domain_expert" class="ml-2 text-sm font-medium text-gray-900">Domain Expert</label>
                     </div>
                 </div>
             </div>
             <div class="mb-6">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
-                <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="john.doe@company.com" required="">
+                <label for="text" class="block mb-2 text-sm font-medium text-gray-900">
+                    {{ form.username.label_tag }}
+                </label>
+                {{ form.username }}
+                <div class="">
+                </div>
+                <!-- <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="johndoe" required=""> -->
             </div> 
             <!-- TODO ADD PASSWORD CONFIRMATION CHECK -->
             <div class="mb-6">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
-                <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="•••••••••" required="">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required="">
             </div> 
             <div class="mb-6">
-                <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Confirm password</label>
-                <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="•••••••••" required="">
+                <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
+                <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required="">
             </div> 
             <div class="flex justify-center items-center">
-                <button type="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">Create Account</button>
+                <button type="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Create Account</button>
             </div>
         </form>
     </div>
