@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+<!-- Remember to include jQuery :) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+{% endblock meta %}
+
+{% block content %}
+<div class="h-full flex flex-col justify-center items-center text-center px-12 my-auto">
+    <img class="w-24 h-24 my-2 rounded-full" src="{% static 'landing_page/img/user.png' %}" alt="user photo">
+    <p><a href="#avatar" rel="modal:open" class = "hover:underline hover:decoration-primary">Change avatar</a></p>
+
+    <br>
+
+    <div class="overflow-x-auto relative">
+        <table class="w-full text-sm text-left">
+            <tbody>
+                <tr>
+                    <th scope="row" class="py-6 px-8 font-medium text-white-900 whitespace-nowrap text-primary">
+                        Username
+                    </th>
+                    <td class="py-6 px-8 text-black-700">
+                        {{username}}
+                    </td>
+                    <td class="py-6 px-8 text-gray">
+                        <p><a href="#popup1" rel="modal:open" class = "hover:underline hover:decoration-primary">Edit</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="py-6 px-8 font-medium text-white-900 whitespace-nowrap text-primary">
+                        Password
+                    </th>
+                    <td class="py-6 px-8 text-black-700">
+                        {{password}}
+                    </td>
+                    <td class="py-6 px-8 text-gray">
+                        <p><a href="#popup2" rel="modal:open" class = "hover:underline hover:decoration-primary">Edit</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="py-6 px-8 font-medium text-white-900 whitespace-nowrap text-primary">
+                        Occupation
+                    </th>
+                    <td class="py-6 px-8 text-black-700">
+                        {{occupation}}
+                    </td>
+                    <td class="py-6 px-8 text-gray">
+                        <p><a href="#popup3" rel="modal:open" class = "hover:underline hover:decoration-primary">Edit</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="popup1" class="modal">
+    <div class="md:block md:items-center">
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                New Username
+                </label>
+            </div>
+            <div class="md:w-2/3">
+            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" id="inline-full-name" type="text" value="{{username}}">
+            </div>
+        </div>
+        <div class="md:flex md:items-center">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+                <a href="#" class="inline-flex justify-center items-center py-1 px-3 text-base md:text-lg font-bold font-medium text-center text-primary bg-white border border-primary rounded-full hover:bg-primary hover:text-white focus:ring-4 focus:ring-primary">
+                    Submit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup2" class="modal">
+    <div class="md:block md:items-center">
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                New Password
+                </label>
+            </div>
+            <div class="md:w-2/3">
+            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" id="inline-full-name" type="text" value="{{username}}">
+            </div>
+        </div>
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                Re-enter Password
+                </label>
+            </div>
+            <div class="md:w-2/3">
+            <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" id="inline-full-name" type="text" value="{{username}}">
+            </div>
+        </div>
+        <div class="md:flex md:items-center">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+                <a href="#" class="inline-flex justify-center items-center py-1 px-3 text-base md:text-lg font-bold font-medium text-center text-primary bg-white border border-primary rounded-full hover:bg-primary hover:text-white focus:ring-4 focus:ring-primary">
+                    Submit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup3" class="modal">
+    <div class="md:block md:items-center">
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                Edit Occupation
+                </label>
+            </div>
+            <div class="md:w-2/3">
+                <select id="occupation-dropdown" name="occupation">
+                </select>
+            </div>
+        </div>
+        <div class="md:flex md:items-center">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+                <a href="#" class="inline-flex justify-center items-center py-1 px-3 text-base md:text-lg font-bold font-medium text-center text-primary bg-white border border-primary rounded-full hover:bg-primary hover:text-white focus:ring-4 focus:ring-primary">
+                    Submit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="avatar" class="modal">
+    <div class="md:block md:items-center">
+        <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+                Upload Image
+                </label>
+            </div>
+            <div class="md:w-2/3">
+                <input type="file" id="img" name="img" accept="image/*">
+            </div>
+        </div>
+        <div class="md:flex md:items-center">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+                <a href="#" class="inline-flex justify-center items-center py-1 px-3 text-base md:text-lg font-bold font-medium text-center text-primary bg-white border border-primary rounded-full hover:bg-primary hover:text-white focus:ring-4 focus:ring-primary">
+                    Submit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let dropdown = $('#occupation-dropdown');
+
+    dropdown.empty();
+
+    dropdown.append('<option selected="true" disabled>Choose your occupation</option>');
+    dropdown.prop('selectedIndex', 0);
+
+    const url = 'https://gist.githubusercontent.com/mkval/a5e32ee8c89d0c8a0806df1679425fde/raw/529a3033a39993cb39eff7f09427c9c19b51bd8b/occupations.json';
+
+    // Populate dropdown with list of provinces
+    $.getJSON(url, function (data) {
+    $.each(data, function (key) {
+        dropdown.append($('<option></option>').attr('value', data[key]).text(data[key]));
+    })
+    });
+</script>
+
+{% endblock content %}
