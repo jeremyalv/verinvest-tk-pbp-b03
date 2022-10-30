@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required, permission_required
 
 
@@ -12,25 +13,24 @@ def index(request):
     if request.user.is_authenticated:
         user_loggedin = True
     
-        context = {
-            'user_loggedin': user_loggedin,
-        }
+    context = {
+        'user_loggedin': user_loggedin,
+    }
         
         return render(request, 'index.html', context)
     else:
-        return render(request,"index.html")
+        return render(request,"landingpage.html")
     
 
 def register(request):
-    form = UserCreationForm()
-
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm()
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('landing_page:login'))
-    
+            return HttpResponseRedirect(reverse('landing_page:login'))
+    else:
+        form = RegisterForm()
     context = {
         'form' : form,
     }
