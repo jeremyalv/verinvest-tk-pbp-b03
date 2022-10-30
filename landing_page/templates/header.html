@@ -8,8 +8,17 @@
       <div id="userDropdownContainer" class="relative">
         <button id="userDropdownBtn" type="button" class="flex mr-3 text-sm bg-transparent rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
           <span class="sr-only">Open user menu</span>
-          <img class="w-8 h-8 rounded-full" src="{% static 'landing_page/img/user.png' %}" alt="user photo">
+          {% if request.user.is_authenticated %}
+            <img class="w-8 h-8 rounded-full" src="{% static 'landing_page/img/user.png' %}" alt="user photo">
+          {% else %}
+            <a href="{%url 'landing_page:login' %}">
+              <button type="button" class="px-4 py-2 bg-primary text-white rounded">
+              login
+              </button>
+            </a>
+          {% endif %}
         </button>
+
         <!-- Dropdown menu -->
         <div id="userDropdown" class="hidden absolute top-full right-0 -ml-4 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow" id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
           <div class="py-3 px-4">
