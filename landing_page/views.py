@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib import messages
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -64,10 +66,19 @@ def login_user(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
+<<<<<<< HEAD
             login(request, user)
             return HttpResponseRedirect(reverse('landing_page:index'))
     context = { 'user_loggedin': user_loggedin }
     return render(request, 'login.html',context)
+=======
+            login(request,user)
+            return redirect('landing_page:index')
+        else:
+            messages.info(request, 'Username atau Password salah!')
+    context = {}
+    return render(request, 'login.html', context)
+>>>>>>> 5444fe5d6ae5462c899dbfe5b6f86c5b719853ac
 
 @login_required(login_url='login/')
 def logout_user(request):
