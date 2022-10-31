@@ -14,5 +14,3 @@ if (hamburgerNavbar !== null) {
         navbarItems.classList.toggle("hidden") 
     })
 }
-
-
