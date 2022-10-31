@@ -7,61 +7,68 @@
             <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-gray-900">Join us and ignite <span class="text-3xl md:text-4xl lg:text-5xl underline underline-offset-3 decoration-4 decoration-primary">smart discussions</span> nationwide.</h1>
             <p class="text-lg font-normal text-gray-500 lg:text-xl">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
         </div>
-    
-        <form method="post" id="loginForm">
+
+        <form method="post" id="registerForm">
             {% csrf_token %}
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
+                    <!-- FORM BARU IMPLEMENT USERNAME & PASS BLM FIRSTNAME LASTNAME DST -->
                     <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">
-                        {{ form.first_name.label_tag }}
+                        First name
                     </label>
-                    <div class="">
-                        {{ form.first_name }}
-                    </div>
-                    <!-- <input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="John" required=""> -->
+                    <input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="John" required="">
                 </div>
                 <div>
                     <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">
-                        {{ form.last_name.label_tag }}
+                        Last name
                     </label>
-                    <div class="">
-                        {{ form.last_name }}
-                    </div>
-                    <!-- <input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="Doe" required=""> -->
+                    <input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="Doe" required="">
                 </div>
     
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900">I am a...</label>
                     <div class="flex items-center mb-4">
-                        <input checked="" id="casual_user" type="radio" value="" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2">
-                        <label for="casual_user" class="ml-2 text-sm font-medium text-gray-900">Casual User</label>
+                        <input checked="" id="regular_user" type="radio" value="regular_user" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2">
+                        <label for="regular_user" class="ml-2 text-sm font-medium text-gray-900">Regular User</label>
                     </div>
                     <div class="flex items-center">
-                        <input id="domain_expert" type="radio" value="" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2">
+                        <input id="domain_expert" type="radio" value="domain_expert" name="user_type" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2">
                         <label for="domain_expert" class="ml-2 text-sm font-medium text-gray-900">Domain Expert</label>
                     </div>
                 </div>
             </div>
             <div class="mb-6">
+                <!-- STYLE INPUT FORMS - REFER TO COMMIT JERE 71d658bb09536edc2f167fc63d78fda3b7a935bf -->
                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900">
                     {{ form.username.label_tag }}
                 </label>
-                {{ form.username }}
-                <div class="">
+                <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+                    {{ form.username }}
                 </div>
                 <!-- <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="johndoe" required=""> -->
             </div> 
             <!-- TODO ADD PASSWORD CONFIRMATION CHECK -->
             <div class="mb-6">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required="">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">
+                    {{ form.password1.label_tag }}
+                </label>
+                <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+                    {{ form.password1 }}
+                </div>
+                
+                <!-- <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required=""> -->
             </div> 
             <div class="mb-6">
-                <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
-                <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required="">
+                <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">
+                    {{ form.password2.label_tag }}
+                </label>
+                <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5">
+                    {{ form.password2 }}
+                </div>
+                <!-- <input type="password" id="confirm_password" name="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required=""> -->
             </div> 
             <div class="flex justify-center items-center">
-                <button type="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Create Account</button>
+                <button type="submit" name="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Create Account</button>
             </div>
         </form>
     </div>
