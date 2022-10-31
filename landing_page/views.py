@@ -33,8 +33,7 @@ def register(request):
         if form.is_valid():
             form.save()
 
-
-            # return HttpResponseRedirect('landing_page:login')
+            return HttpResponseRedirect(reverse('landing_page:login'))
     
     context = {
         'form': UserCreationForm(),
