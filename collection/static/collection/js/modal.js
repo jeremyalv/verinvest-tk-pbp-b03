@@ -27,10 +27,10 @@ overlay.addEventListener('click', () => {
 });
 
 modalCreatePost.addEventListener('click', () => {
-    const titleVal = $("#title-input").val();
+    const title = $("#title-input").val();
     const content = $("#content-input").val();
 
-    if (titleVal == "" || content == "") {
+    if (title == "" || content == "") {
         console.log('title val or desc val is empty')
         if ($("#field-error").length >  0) {
             $("#field-error").remove()
@@ -38,15 +38,16 @@ modalCreatePost.addEventListener('click', () => {
         $("#modal-cta").prepend(`<p id="field-error" class="text-lg py-2 font-base text-rose-500">Please fill the empty fields!</p>`);
     } else {
         console.log("REACHED POST AJAX");
+
         $.post({
             // Current url: collection/forum/
             url: 'items/add/',
             type: 'post',
             data: {
-                'title': titleVal,
+                'title': title,
                 'content': content,
             },
-            success: [createCollection],
+            success: [createCollection, function () { console.log ("post success")}],
         });
 
 
