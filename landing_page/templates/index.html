@@ -9,6 +9,11 @@
 
 <div class="h-full flex flex-col justify-center items-center text-center px-12 my-auto">
     <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">We Help People Avoid Scam Investments</h1>
+    {% if user_loggedin %}
+        <p class="mb-4 text-2xl font-semibold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl">Welcome {{ username }}</p>
+    {% else %}
+        <p class="mb-4 text-2xl font-semibold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-4xl">Not logged in</p>
+    {% endif %}
     <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, fugit! Officia doloribus omnis amet iure aperiam expedita, porro atque aliquid.</p>
     <a href="{% url 'collection:show_collection' %}" class="inline-flex justify-center items-center py-3 px-5 text-base md:text-lg font-bold font-medium text-center text-primary bg-white border border-primary rounded-lg hover:bg-primary hover:text-white focus:ring-4 focus:ring-primary">
         Explore Discussions
