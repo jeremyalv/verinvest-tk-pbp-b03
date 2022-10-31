@@ -74,6 +74,13 @@
             <div class="flex justify-center items-center">
                 <button type="submit" name="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Create Account</button>
             </div>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <h1> {{ error }} </h1>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
         </form>
     </div>
 </div>

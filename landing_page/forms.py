@@ -62,6 +62,10 @@ class RegisterForm(UserCreationForm):
 
         if users_count.count():
             raise ValidationError('User already exist.')
+
+        if username == "ucup123":
+            raise ValidationError("ucup tidak boleh")
+
         return username
 
     def clean_password2(self):
