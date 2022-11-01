@@ -10,20 +10,22 @@ from forum_item.forms import ForumForm
 
 # @login_required
 def view_post(request, id):
-    pass
+    post = Post.objects.get(pk=id)
 
-# ajax
+    context = { 'post': post }
+
+    return render(request, 'forum_item.html', context)
+
+@login_required()
 @csrf_exempt
 def create_post(request):
     if request.method == 'POST':
-
         title = request.POST.get('title')
         content = request.POST.get('content')
 
         Post.objects.create(
             post_type='forum',
-            # TODO UNCOMMENT
-            # author=request.user,
+            author=request.user,
             title=title,
             content=content,
             upvotes=0,
@@ -32,15 +34,12 @@ def create_post(request):
         )
 
         return HttpResponseRedirect(reverse('collection:forum'))
-    else:
-        form = ForumForm()
-        
-    context = {
-        'form' : form,
-    }
 
-    return render(request, 'create_forum.html', context)
+    return HttpResponseRedirect(reverse('landing_page:index'))
+    # TODO uncomment
+    # return HttpResponseRedirect(reverse('collection:forum'))
 
+@login_required(login_url='/login/')
 @csrf_exempt
 def delete_post(request, id):
     post = Post.objects.get(id=id, author=request.user)
