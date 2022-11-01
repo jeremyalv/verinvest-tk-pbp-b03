@@ -18,7 +18,7 @@ def index(request):
 
         context = {
             'user_loggedin': user_loggedin,
-            'username': request.user.get_username(),
+            'username': request.user,
         }
             
         return render(request, 'index.html', context)
@@ -45,7 +45,7 @@ def register(request):
     
     context = {
         'form': UserCreationForm(),
-        'users': User.objects.all()
+        # 'users': User.objects.all()
     }
 
     return render(request, 'register.html', context)
@@ -78,7 +78,7 @@ def login_user(request):
     
     return render(request, 'login.html')
 
-@login_required(login_url='login/')
+@login_required()
 def logout_user(request):
     logout(request)
 
