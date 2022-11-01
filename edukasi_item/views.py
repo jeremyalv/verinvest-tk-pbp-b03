@@ -9,7 +9,7 @@ from edukasi_item.models import EdukasiComment
 from edukasi_item.forms import EducationForm, CommentForm
 
 def view_post(request, id):
-    post_item = Post.objects.filter(id=id)
+    post_item = Post.objects.filter(id=id).all()
     context = {
         'post_item':post_item
     }
@@ -18,39 +18,34 @@ def view_post(request, id):
 
 # # @login_required
 # # @csrf_exempt
-# def create_post(request):
-#     if request.method == 'POST':
+def create_post(request):
+    form = EducationForm()
+    if request.method == 'POST':
+        form = EducationForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.post_type ='edukasi'
+            post.author = request.user
+            post.upvotes = 0
+            post.viewers = 0
+            post.comments_count = 0
+            post.save()
+            return redirect('collection:education')
 
-#         title = request.POST.get('title')
-#         content = request.POST.get('content')
+    context = {'form':form}
+    return render(request, 'create_education.html', context)
 
-#         Post.objects.create(
-#             post_type='edukasi',
-#             author=request.user,
-#             title=title,
-#             content=content,
-#             upvotes=0,
-#             viewers=0,
-#             comments_count=0,
-#         )
-
-#         return HttpResponseRedirect(reverse('collection:forum'))
-#     else:
-#         form = EducationForm()
-        
-#     context = {
-#         'form' : form,
-#     }
-
-#     return render(request, 'create_education.html', context)
+def post_json(request):
+    post_all = Post.objects.all()
+    return HttpResponse(serializers.serialize("json", post_all), content_type="application/json")
 
 # # @login_required
 # # @csrf_exempt
-# def delete_post(request, id):
-#     post = Post.objects.get(id=id, author=request.user)
-#     post.delete()
+def delete_post(request, id):
+    post = Post.objects.get(id=id, author=request.user)
+    post.delete()
 
-#     return HttpResponseRedirect(reverse('collection:education'))
+    return HttpResponseRedirect(reverse('collection:education'))
 
 # @login_required
 # @csrf_exempt
@@ -67,62 +62,3 @@ def add_comment(request: HttpRequest):
         )
     comment.save()
     return HttpResponse(serializers.serialize("json", [comment]), content_type='application/json')
-
-# def upvotes(request):
-#     return
-
-# def saved(request):
-#     return
-
-# from django.shortcuts import render
-# from django.http import HttpResponse, HttpResponseRedirect
-# from django.urls import reverse
-# from django.contrib.auth.decorators import login_required
-# from django.views.decorators.csrf import csrf_exempt
-
-# from collection.models import Post
-# # from forum_item.models import EdukasiComment
-# # from forum_item.forms import EdukasiForm
-
-# def view_post(request):
-#     pass
-
-# def create_post(request):
-#     pass
-
-# def delete_post(request):
-#     pass
-
-# @csrf_exempt
-# def create_post(request):
-#     if request.method == 'POST':
-
-#         title = request.POST.get('title')
-#         content = request.POST.get('content')
-
-#         Post.objects.create(
-#             post_type='forum',
-#             author=request.user,
-#             title=title,
-#             content=content,
-#             upvotes=0,
-#             viewers=0,
-#             comments_count=0,
-#         )
-
-#         return HttpResponseRedirect(reverse('collection:forum'))
-#     else:
-#         form = ForumForm()
-        
-#     context = {
-#         'form' : form,
-#     }
-
-#     return render(request, 'create_forum.html', context)
-
-# @csrf_exempt
-# def delete_post(request, id):
-#     post = Post.objects.get(id=id, author=request.user)
-#     post.delete()
-
-#     return HttpResponseRedirect(reverse('collection:forum'))

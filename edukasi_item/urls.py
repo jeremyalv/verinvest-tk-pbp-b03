@@ -1,5 +1,5 @@
 from django.urls import path
-from edukasi_item.views import (view_post, create_post, delete_post)
+from edukasi_item.views import view_post, create_post, delete_post
 
 app_name = 'edukasi_item'
 
