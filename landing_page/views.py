@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+
+from profile_page.models import Profile
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -31,7 +33,13 @@ def register(request):
         form = UserCreationForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
+
+            profile = Profile()
+            profile.user = user
+            profile.avatar = None
+            profile.occupation = ""
+            profile.save()
 
             return HttpResponseRedirect(reverse('landing_page:login'))
     
