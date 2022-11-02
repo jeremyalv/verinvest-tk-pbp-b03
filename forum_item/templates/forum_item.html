@@ -1,8 +1,121 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+
+<script>
+// Refernce <form>
+const form = document.forms.commentsReplies;
+// Any click on <form> invokes post()
+//form.onclick = post;
+
+// Pass the event
+function post(event) {
+  /* Reference all <fieldset>
+  (also <button>, <textarea>, etc) */
+  const field = event.currentTarget.elements;
+  // Reference the actual element clicked
+  const clicked = event.target;
+  // if element clicked has class postCom
+  if (clicked.matches('.postCom')) {
+    /* find <fieldset name="post"> and
+    insert HTML into it */
+    field.post.insertAdjacentHTML('beforeEnd', `<fieldset name='commentPost'><textarea></textarea><button class='comTxt' type='button'>Done</button></fieldset>`);
+    // Otherwise if clicked element has class comTxt
+  } else if (clicked.matches('.comTxt')) {
+    /* find the clicked element's element
+    that is right before it and get it's text */
+    const text = clicked.previousElementSibling.value;
+    /* find <fieldset name='comments'> and insert HTML */
+    field.comments.insertAdjacentHTML('afterBegin', `<fieldset>${text}<button class='postRep' type='button'>Reply</button><ul></ul></fieldset>`);
+    // Remove <fieldset name='commentPost'>
+    field.commentPost.remove();
+  } else if (clicked.matches('.postRep')) {
+    clicked.insertAdjacentHTML('afterEnd', `<ul><textarea></textarea><button class='repTxt' type='button'>Done</button></ul>`);
+  } else if (clicked.matches('.repTxt')) {
+    const text = clicked.previousElementSibling.value;
+    const list = clicked.parentElement;
+    list.insertAdjacentHTML('afterBegin', `<li>${text}<button class='postRep' type='button'>Reply</button></li>`);
+    clicked.previousElementSibling.remove();
+    clicked.remove();
+  } else {
+    return false;
+  }
+}
+function getVote(int) {
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("poll").innerHTML=this.responseText;
+    }
+  }
+  xmlhttp.open("GET","poll_vote.php?vote="+int,true);
+  xmlhttp.send();
+}
+</script>
+{% endblock meta %}
+
 {% block content %}
+
+<head>
 <div id="forumItem" class="flex flex-col justify-center items-center">
     <h1 class="text-4xl">{{ post.title }}</h1>
+    <br/>
     <p class="text-lg">{{ post.content }}</p>
+
+
 </div>
+</head>
+
+<br/>
+
+<body>
+    <form id='commentsReplies' class="flex flex-col justify-center items-center">
+        <fieldset name='post' >
+            <button id="add-post" data-modal-target="#modal"onclick="post(event)" class="py-2.5 px-5  md:px-6 text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm text-center inline-flex items-center mr-2 ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>                  
+                <p class="ml-2">
+                     Comment 
+                </p>
+                
+            </button>
+        </fieldset>
+        <fieldset name="comments" >
+            <legend></legend>
+          </fieldset>
+      </form>
+
+      <br/>
+
+
+
+      <form class="myform flex flex-col justify-center items-center">
+        
+        <button
+                class="vote-btn" 
+                data-default-text="Like This Dish Up!"
+                data-alt-text="Thank you for the like">
+          <span class="icon"></span> <button class= "text py-2.5 px-5  md:px-6 text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm text-center inline-flex items-center mr-2 ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Like  this  post</button>
+        </button>
+      </form>
+
+      <br/>
+
+      <form class="share flex flex-col justify-center items-center">
+        
+        <button class= "text py-2.5 px-5  md:px-6 text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm text-center inline-flex items-center mr-2 ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Share this post</button>
+        
+      </form>
+
+
+</div>
+</body>
+
+
 {% endblock content %}
