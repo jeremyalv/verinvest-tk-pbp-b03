@@ -4,22 +4,24 @@
     <a href="{% url 'landing_page:index' %}"><img src="{% static 'landing_page/img/verinvest_logo-1.png' %}" class="mr-3 h-6 sm:h-9" alt="Verinvest Logo"></a>      
       <div class="flex items-center md:order-2">
         {% if user_loggedin == False %}
-        <div id="login_register_cta" class="flex mr-4 md:mr-16">
-          <div id="login" class="mr-2 md:mr-4">
-            <a href="{% url 'landing_page:login' %}">
-                <button type="button" class="px-4 py-2 bg-primary text-white border border-primary rounded">
-                  Login
+          <div id="login_register_cta" class="flex mr-4 md:mr-16">
+            <div id="login" class="mr-2 md:mr-4">
+              <a href="{% url 'landing_page:login' %}">
+                  <button type="button" class="px-4 py-2 bg-primary text-white border border-primary rounded">
+                    Login
+                  </button>
+              </a>
+            </div>
+            <div id="register">
+              <a href="{% url 'landing_page:register' %}">
+                <button type="button" class="px-4 py-2 bg-transparent text-primary border border-primary rounded">
+                  Register
                 </button>
-            </a>
+              </a>
+            </div>
           </div>
-          <div id="register">
-            <a href="{% url 'landing_page:register' %}">
-              <button type="button" class="px-4 py-2 bg-transparent text-primary border border-primary rounded">
-                Register
-              </button>
-            </a>
-          </div>
-        </div>
+          <div id="userDropdownBtn"></div>
+          <div id="hamburgerNavbar"></div>
         {% else %}
           <div id="userDropdownContainer" class="relative">
             <button id="userDropdownBtn" type="button" class="flex mr-3 text-sm bg-transparent rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
@@ -29,15 +31,15 @@
             <!-- Dropdown menu -->
             <div id="userDropdown" class="hidden absolute top-full right-0 -ml-4 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow" id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
               <div class="py-3 px-4">
-                <span class="block text-sm text-gray-900">Bonnie Green</span>
-                <span class="block text-sm font-medium text-gray-500 truncate">Domain Expert</span>
+                <span class="block text-sm text-gray-900">{{request.user}}</span>
+                <span class="block text-sm font-medium text-gray-500 truncate">{{user.is_expert}}</span>
               </div>
               <ul class="py-1" aria-labelledby="user-menu-button">
                 <li>
                   <a href="{% url 'profile_page:show_profile' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                 </li>
                 <li>
-                  <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                  <a href="{% url 'landing_page:logout' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                 </li>
               </ul>
             </div>

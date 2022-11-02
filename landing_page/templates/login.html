@@ -1,87 +1,41 @@
-{% load static %}
-<head>
-    {% block meta %}
-    <title>Login</title>
-    {% endblock meta %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Add Google APIs -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    
-  
-    <style>
-      * {
-        font-family: 'Poppins';
-        font-size: 12px;
-      }
-  
-      *, *::before, *::after {
-          box-sizing: border-box;
-      }
-    </style>
-      <!-- Integrate TailwindCSS with CDN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="{% static 'landing_page/js/base.js'%}"></script>
-  
-  <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    "primary": '#27B688',
-                },
-                minHeight: {
-                  '6/12': '50%',
-                  '9/12': '75%',
-                }
-            }
-        }
-    }
-    </script>
-</head>
-
+{% extends 'base.html' %}
 
 {% block content %}
-<body class="bg-gradient-to-b from-primary via-gray-500 to-primary">
-<div class="h-full flex flex-col justify-center items-center text-center px-12 my-auto">
-    <div class = "login pl-24 pr-24 pt-12 pb-12 border border-primary bg-gray-100 rounded">
-        <h1 class="text-3xl">Login</h1>
+<div id="loginPageContainer" class="flex flex-col items-center justify-center px-12">
+    <div id="loginPage" class="w-8/12">
+        <div id="loginHeader" class="pb-4 md:pb-12">
+            <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-gray-900">Join us and ignite <span class="text-3xl md:text-4xl lg:text-5xl underline underline-offset-3 decoration-4 decoration-primary">smart discussions</span> nationwide.</h1>
+            <p class="text-lg font-normal text-gray-500 lg:text-xl">Here at Verinvest we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+        </div>
 
-        <form method="POST" action="">
+        <form method="post" id="loginForm">
             {% csrf_token %}
-            <table>
-                <tr>
-                    <td>Username: </td>
-                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-                </tr>
-                        
-                <tr>
-                    <td>Password: </td>
-                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td><button class="px-4 py-2 bg-primary text-white rounded hover:bg-gray-300">
-                        Loginx 
-                    </button></td>
-                </tr>
-            </table>
-        </form>
-
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}     
+            <div class="mb-6">
+                <!-- STYLE INPUT FORMS - REFER TO COMMIT JERE 71d658bb09536edc2f167fc63d78fda3b7a935bf -->
+                <label for="text" class="block mb-2 text-sm font-medium text-gray-900">
+                    Username
+                </label>
+                <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="johndoe" required="">
+            </div> 
+            <!-- TODO ADD PASSWORD CONFIRMATION CHECK -->
+            <div class="mb-6">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">
+                    Password
+                </label>
+                
+                <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required="">
+            </div> 
+            <div class="mb-6">
+                <!-- STYLE INPUT FORMS - REFER TO COMMIT JERE 71d658bb09536edc2f167fc63d78fda3b7a935bf -->
+                <label for="text" class="block mb-2 text-sm font-medium text-gray-900">
+                    Don't have an account? Sign up <a href="{% url 'landing_page:register' %}" class = "hover:underline hover:decoration-primary font-bold">Here</a>.
+                </label>
+            </div> 
             
-        Don't have an account? <a href="{% url 'landing_page:register' %}" class="text-primary hover:text-gray-500">Create Account</a>
+            <div class="flex justify-center items-center">
+                <button type="submit" name="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
+            </div>
+        </form>
     </div>
- </div>
-
+</div>
 {% endblock content %}
-</body>
