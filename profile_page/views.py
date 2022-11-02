@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from profile_page.models import Profile
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 def show_profile(request):
@@ -14,7 +15,6 @@ def show_profile(request):
 
     return render(request, "profile.html", context)
 
-@login_required(login_url='landing_page:login')
 def edit_profile(request):
     profile = Profile.objects.filter(user = request.user)
     user_loggedin = False

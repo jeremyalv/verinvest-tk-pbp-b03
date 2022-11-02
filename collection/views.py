@@ -9,7 +9,6 @@ from collection.models import Post
 def show_collection(request):
     posts = Post.objects.all()
     user_loggedin = False
-
     if request.user.is_authenticated:
         user_loggedin = True
 
@@ -42,14 +41,13 @@ def search_collection(request, search_key):
 def forum_archive(request):
     forum_posts = Post.objects.filter(post_type='forum')
     user_loggedin = False
-
     if request.user.is_authenticated:
         user_loggedin = True
 
     context = {
         'education_posts': forum_posts,
         'count': forum_posts.count(),
-        'user_loggedin': user_loggedin
+         'user_loggedin': user_loggedin,
     }
 
     return render(request, 'forum.html', context)
@@ -58,14 +56,13 @@ def forum_archive(request):
 def education_archive(request):
     education_posts = Post.objects.filter(post_type='education')
     user_loggedin = False
-
     if request.user.is_authenticated:
         user_loggedin = True
 
     context = {
-        'education_posts': education_posts,
+        'forum_posts': education_posts,
         'count': education_posts.count(),
-        'user_loggedin': user_loggedin
+         'user_loggedin': user_loggedin,
     }
 
     return render(request, 'education.html', context)

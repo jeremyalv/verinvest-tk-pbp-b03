@@ -12,6 +12,8 @@ from forum_item.forms import ForumForm
 def view_post(request, id):
     post = Post.objects.get(pk=id)
     user_loggedin = False
+    if request.user.is_authenticated:
+        user_loggedin = True
 
     if request.user.is_authenticated:
         user_loggedin = True
