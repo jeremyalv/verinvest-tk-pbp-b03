@@ -4,8 +4,7 @@ env/
 *.log
 *.pot
 *.pyc
-**/__pycache__/
-**/migrations/
+__pycache__/
 db.sqlite3
 media
 
@@ -138,4 +137,4 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-
+**/__pycache__/

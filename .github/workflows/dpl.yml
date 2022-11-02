@@ -2,11 +2,11 @@ name: Deploy
 
 on:
   push:
-    branches-ignore:
-      - template
+    branches:
+      - main
   pull_request:
-    branches-ignore:
-      - template
+    branches:
+      - main
 
 jobs:
   Deployment:
