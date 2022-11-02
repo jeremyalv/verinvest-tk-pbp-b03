@@ -6,6 +6,7 @@ from .models import CustomUser
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required, permission_required
 
+
 def navigation(request):
     user_loggedin = False
 
@@ -26,6 +27,7 @@ def navigation(request):
     render(request, 'header.html', context)
 
 def index(request):
+    users = CustomUser.objects.all()
     user_loggedin = False
 
     if request.user.is_authenticated:
@@ -34,11 +36,17 @@ def index(request):
         context = {
             'user_loggedin': user_loggedin,
             'username': request.user.get_username(),
+            'users': users,
+            'user_count': len(users),
         }
             
         return render(request, 'index.html', context)
     
-    context = { 'user_loggedin': user_loggedin }
+    context = { 
+        'user_loggedin': user_loggedin ,
+        'users': users,
+        'user_count': len(users),
+        }
     return render(request, 'index.html', context)  
 
 def register(request):
@@ -70,7 +78,7 @@ def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
+
         user = authenticate(request, username=username, password=password)
 
         if user is not None:

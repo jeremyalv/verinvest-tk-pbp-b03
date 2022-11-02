@@ -8,6 +8,8 @@ class CustomUser(models.Model):
     last_name = models.CharField(max_length=20)
     email = models.EmailField(unique=True)
 
+    USERNAME_FIELD = 'username'
+
     def __str__(self):
         return self.user.username
     
