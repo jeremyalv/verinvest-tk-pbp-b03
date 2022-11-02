@@ -4,10 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from .models import CustomUser
 from .forms import RegisterForm
-
-from profile_page.models import Profile
 from django.contrib.auth.decorators import login_required, permission_required
-
 
 def navigation(request):
     user_loggedin = False
@@ -68,27 +65,12 @@ def register(request):
     }
 
     return render(request, 'register.html', context)
-            
-
-# def register(request):
-#     if request.method == 'POST':
-#         form = RegisterForm()
-
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse('landing_page:login'))
-#     else:
-#         form = RegisterForm()
-#     context = {
-#         'form' : form,
-#     }
-
-#     return render(request, 'register.html', context)
 
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
