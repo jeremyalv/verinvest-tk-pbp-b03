@@ -42,29 +42,17 @@ def register(request):
             profile.save()
 
             return HttpResponseRedirect(reverse('landing_page:login'))
-    
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+
     context = {
+        'user_loggedin': user_loggedin,
         'form': UserCreationForm(),
-        # 'users': User.objects.all()
     }
 
     return render(request, 'register.html', context)
-            
-
-# def register(request):
-#     if request.method == 'POST':
-#         form = RegisterForm()
-
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse('landing_page:login'))
-#     else:
-#         form = RegisterForm()
-#     context = {
-#         'form' : form,
-#     }
-
-#     return render(request, 'register.html', context)
 
 def login_user(request):
     if request.method == 'POST':
@@ -76,7 +64,16 @@ def login_user(request):
             login(request, user)
             return HttpResponseRedirect(reverse('landing_page:index'))
     
-    return render(request, 'login.html')
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+
+    context = {
+        'user_loggedin': user_loggedin,
+    }
+
+    return render(request, 'login.html', context)
 
 @login_required()
 def logout_user(request):

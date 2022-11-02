@@ -7,10 +7,15 @@ from django.contrib.auth.decorators import login_required
 from collection.models import Post
 
 def show_collection(request):
-    posts = Post.objects.all();
+    posts = Post.objects.all()
+    user_loggedin = False
+    if request.user.is_authenticated:
+        user_loggedin = True
+
     context = {
         'posts': posts,
         'count': posts.count(),
+        'user_loggedin': user_loggedin,
     }
     
     return render(request, 'collection.html', context)
@@ -35,10 +40,14 @@ def search_collection(request, search_key):
 # login required
 def forum_archive(request):
     forum_posts = Post.objects.filter(post_type='forum')
+    user_loggedin = False
+    if request.user.is_authenticated:
+        user_loggedin = True
 
     context = {
         'forum_posts': forum_posts,
         'count': forum_posts.count(),
+         'user_loggedin': user_loggedin,
     }
 
     return render(request, 'forum.html', context)
@@ -46,10 +55,14 @@ def forum_archive(request):
 # login required
 def education_archive(request):
     education_posts = Post.objects.filter(post_type='education')
+    user_loggedin = False
+    if request.user.is_authenticated:
+        user_loggedin = True
 
     context = {
-        'education_posts': education_posts,
+        'forum_posts': education_posts,
         'count': education_posts.count(),
+         'user_loggedin': user_loggedin,
     }
 
     return render(request, 'education.html', context)
