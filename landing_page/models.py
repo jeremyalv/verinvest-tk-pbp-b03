@@ -13,4 +13,7 @@ from django.contrib.auth.models import User
 #     def __str__(self):
 #         return self.user.username
     
-
+class Fortofolio(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nama = models.CharField(max_length=20)
+    jumlah = models.IntegerField()
