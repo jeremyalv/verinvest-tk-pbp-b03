@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import CustomUser
+from landing_page.models import CustomUser
 from collection.models import Post
 
 class ForumComment(models.Model):

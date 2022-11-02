@@ -2,11 +2,10 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from users.models import CustomUser
-from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+from .forms import RegisterForm
 
 from profile_page.models import Profile
-from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required, permission_required
 
 
@@ -46,25 +45,26 @@ def index(request):
     return render(request, 'index.html', context)  
 
 def register(request):
-    form = UserCreationForm()
+    form = RegisterForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             user = form.save()
 
-            profile = Profile()
-            profile.user = user
-            profile.avatar = None
-            profile.occupation = ""
-            profile.save()
+            CustomUser.objects.create(
+                user=user,
+                first_name=user.first_name,
+                last_name=user.last_name,
+                email=user.email,
+                is_expert=user.is_expert,
+            )
 
             return HttpResponseRedirect(reverse('landing_page:login'))
     
     context = {
-        'form': UserCreationForm(),
-        # 'users': User.objects.all()
+        'form': form,
     }
 
     return render(request, 'register.html', context)

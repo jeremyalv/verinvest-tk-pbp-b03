@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import CustomUser
+from landing_page.models import CustomUser
 
 class Post(models.Model):
     post_type = models.CharField(max_length=10)
