@@ -16,5 +16,8 @@ class VerinvestUser(AbstractUser):
 
     is_expert = models.BooleanField(default=False)
 
+    birth_date = models.DateField()
+    occupation = models.TextField(max_length=32)
+
 
         
