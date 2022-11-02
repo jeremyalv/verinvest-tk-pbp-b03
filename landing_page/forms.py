@@ -9,6 +9,7 @@ class RegisterForm(UserCreationForm):
     USER_TYPES = [('regular_user', 'Regular User'), ('domain_expert', 'Domain Expert')]
     form_input_class = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5'
 
+      
     username = forms.CharField(label='Username', min_length=5, max_length=150,
                 widget=forms.TextInput(
                     attrs={
@@ -56,19 +57,20 @@ class RegisterForm(UserCreationForm):
                     }
                 ))
 
-    def username_clean(self):
-        username = self.cleaned_data['username']
-        users_count = User.objects.filter(username=username)
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        users_count = User.objects.get(username=username)
+        
 
         if users_count.count():
             raise ValidationError('User already exist.')
 
-        if username == "ucup123":
-            raise ValidationError("ucup tidak boleh")
+        if username == 'sheva12':
+            raise forms.ValidationError(("ucup tidak boleh"))
 
         return username
 
-    def clean_password2(self):
+    def clean_password2(self):  
         password1 = self.cleaned_data['password1']
         password2 = self.cleaned_data['password2']
 
@@ -84,11 +86,10 @@ class RegisterForm(UserCreationForm):
             last_name=self.cleaned_data['last_name'],
             user_type=self.cleaned_data['user_type'],
         )
+        user.save()
 
         return user
     
-        
-
 
 
 

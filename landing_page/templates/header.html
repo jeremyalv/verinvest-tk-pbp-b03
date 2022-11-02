@@ -29,8 +29,8 @@
             <!-- Dropdown menu -->
             <div id="userDropdown" class="hidden absolute top-full right-0 -ml-4 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow" id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
               <div class="py-3 px-4">
-                <span class="block text-sm text-gray-900">{{users.first_name}}</span>
-                <span class="block text-sm font-medium text-gray-500 truncate">Domain Expert</span>
+                <span class="block text-sm text-gray-900">{{first_name}} {{last_name}}</span>
+                <span class="block text-sm font-medium text-gray-500 truncate">Domain Expert {{user_type}}</span>
               </div>
               <ul class="py-1" aria-labelledby="user-menu-button">
                 <li>
@@ -60,6 +60,9 @@
         </li>
         <li>
           <a href="{% url 'about:about' %}" class="block border md:border-0 py-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0  ">About</a>
+        </li>
+        <li>
+          <a href="{%url 'landing_page:forto' %}"  class="block border md:border-0 py-4 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0  ">Add Forto</a>
         </li>
       </ul>
     </div>
