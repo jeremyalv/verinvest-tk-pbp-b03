@@ -11,8 +11,17 @@ from forum_item.forms import ForumForm
 # @login_required
 def view_post(request, id):
     post = Post.objects.get(pk=id)
+    user_loggedin = False
+    if request.user.is_authenticated:
+        user_loggedin = True
 
-    context = { 'post': post }
+    if request.user.is_authenticated:
+        user_loggedin = True
+
+    context = { 
+        'post': post,
+        'user_loggedin': user_loggedin
+    }
 
     return render(request, 'forum_item.html', context)
 

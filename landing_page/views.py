@@ -51,6 +51,10 @@ def index(request):
 
 def register(request):
     form = RegisterForm()
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -67,14 +71,29 @@ def register(request):
             )
 
             return HttpResponseRedirect(reverse('landing_page:login'))
-    
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+
     context = {
+<<<<<<< HEAD
         'form': form,
+        'user_loggedin': user_loggedin
+=======
+        'user_loggedin': user_loggedin,
+        'form': UserCreationForm(),
+>>>>>>> f49802839e2a46c1c4949d8d0db6cef54f8481f9
     }
 
     return render(request, 'register.html', context)
 
 def login_user(request):
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -84,8 +103,23 @@ def login_user(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse('landing_page:index'))
+<<<<<<< HEAD
+
+    context = {
+        'user_loggedin': user_loggedin
+=======
     
-    return render(request, 'login.html')
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+
+    context = {
+        'user_loggedin': user_loggedin,
+>>>>>>> f49802839e2a46c1c4949d8d0db6cef54f8481f9
+    }
+
+    return render(request, 'login.html', context)
 
 @login_required()
 def logout_user(request):
