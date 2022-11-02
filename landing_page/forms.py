@@ -1,5 +1,6 @@
 from django import forms
-from .models import CustomUser
+# from .models import CustomUser
+from profile_page.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
@@ -75,7 +76,6 @@ class RegisterForm(UserCreationForm):
                 ))
 
     class Meta:
-        # model = CustomUser
         model = User
         fields = ['first_name', 'last_name', 'email', 'username', 'password1']
 
