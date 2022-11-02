@@ -51,6 +51,10 @@ def index(request):
 
 def register(request):
     form = RegisterForm()
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -70,11 +74,17 @@ def register(request):
     
     context = {
         'form': form,
+        'user_loggedin': user_loggedin
     }
 
     return render(request, 'register.html', context)
 
 def login_user(request):
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -84,8 +94,12 @@ def login_user(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse('landing_page:index'))
-    
-    return render(request, 'login.html')
+
+    context = {
+        'user_loggedin': user_loggedin
+    }
+
+    return render(request, 'login.html', context)
 
 @login_required()
 def logout_user(request):
