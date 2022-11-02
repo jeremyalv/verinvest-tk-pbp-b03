@@ -9,7 +9,7 @@
 6. Muhammad Al Rivalda
 
 ## Link Aplikasi Heroku
-[Verinvest](https://verinvest.herokuapp.com/)
+[Verinvest](https://verinvest-backup.herokuapp.com/)
 
 
 ## Latar Belakang
