@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from users.models import VerinvestUser
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from .models import *
@@ -58,7 +58,7 @@ class RegisterForm(UserCreationForm):
 
     def username_clean(self):
         username = self.cleaned_data['username']
-        users_count = User.objects.filter(username=username)
+        users_count = VerinvestUser.objects.filter(username=username)
 
         if users_count.count():
             raise ValidationError('User already exist.')
@@ -73,7 +73,7 @@ class RegisterForm(UserCreationForm):
         return password2
 
     def save(self, commit=True):
-        user = User.objects.create_user(
+        user = VerinvestUser.objects.create_user(
             username=self.cleaned_data['username'],
             password=self.cleaned_data['password1'],
             first_name=self.cleaned_data['first_name'],

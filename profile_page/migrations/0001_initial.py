@@ -12,13 +12,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='EdukasiComment',
+            name='Profile',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date_created', models.DateField(auto_now_add=True)),
-                ('content', models.TextField(max_length=255)),
-                ('upvotes', models.IntegerField()),
-                ('saved', models.IntegerField()),
+                ('occupation', models.TextField(max_length=32)),
             ],
         ),
     ]
