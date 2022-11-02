@@ -10,4 +10,3 @@ class EdukasiComment(models.Model):
     content = models.TextField()
 
     upvotes = models.IntegerField()
-    # saved = models.IntegerField()
