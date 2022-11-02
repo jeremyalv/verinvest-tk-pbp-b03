@@ -21,21 +21,23 @@ def show_collection(request):
     return render(request, 'collection.html', context)
 
 def search_collection(request, search_key):
-    filtered_posts = Post.objects.filter(title_icontains=search_key)
-    template = ''
+    if request.method == 'GET':
+        search_key = request.GET.get('search_key')
+        posts = Post.objects.filter(title__icontains=search_key)
+        template = ''
 
-    if ("forum" in request.path):
-        template = 'forum.html'    
-    elif ("education" in request.path):
-        template = 'education.html'
-    else:
-        template = 'collection.html'
+        if ("forum" in request.path):
+            template = 'forum.html'    
+        elif ("education" in request.path):
+            template = 'education.html'
+        else:
+            template = 'collection.html'
 
-    context = {
-        'filtered_posts': filtered_posts,
-    }
+        context = {
+            'posts': posts,
+        }
 
-    return render(request, template, context)
+        return render(request, template, context)
 
 # login required
 def forum_archive(request):

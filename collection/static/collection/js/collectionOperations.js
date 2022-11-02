@@ -1,11 +1,9 @@
 // Run method
 createCollection();
 function createCollection() {
-    console.log("RUN createCollection()");
     
 
     $.getJSON(`${location.origin}/collections/json/`, function(data) {
-        console.log("RUN GET JSON");
         // Empty the collection containers, if they contain any items
         $("#forumCollectionBody").empty();
         $("#edukasiCollectionBody").empty();
