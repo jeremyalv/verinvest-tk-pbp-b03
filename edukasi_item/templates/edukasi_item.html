@@ -25,7 +25,7 @@
     url.parentNode.removeChild(url);
     setTimeout( function() {
         document.getElementById("copyLink").innerHTML = buttonLabel;
-    }, 500);
+    }, 1000);
   }
 
   function upvote() {
@@ -44,19 +44,19 @@
 
 <div class="lg:flex lg:items-center lg:justify-between">
     <div class="min-w-0 flex-1">
-      <h2 class="mx-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Item X</h2>
+      <h2 class="mx-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">{{ post_item.title }}</h2>
       <div class="mx-4 mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
         <div class="mt-2 flex items-center text-sm text-gray-500">
           <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="currentColor" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"/>
           </svg>
-          Username
+          {{ post_item.author }}
         </div>
         <div class="mt-2 flex items-center text-sm text-gray-500">
           <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
           </svg>
-          Date Published
+          {{ post_item.date_created }}
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
             </svg>
           </button>
-        <label class="inline-flex text-lg font-bold text-gray-700">100</label>
+        <label class="inline-flex text-lg font-bold text-gray-700">{{ post_item.upvotes }}</label>
         <button type="button" id="copyLink" class="mx-4 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" onclick="copyLink()">
             <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
@@ -80,25 +80,23 @@
   </div>
 
 <div>
-    <p class="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p class="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p class="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p class="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p class="m-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p class="m-4">{{ post_item.content }}</p>
 </div>  
 
 <div class="mt-5 flex lg:mt-0 lg:ml-4">
-    <button type="button" id="commentButton" class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary" onclick="showCommentForm()">
+    <a href="{% url 'edukasi_item:add_comment' %}" type="button" id="commentButton" class="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary" onclick="showCommentForm()">
           <svg class="-ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
           </svg>
           Comment
-    </button>
+        </a>
 </div>
 
-<form id="commentForm">
+<!-- <form method="POST" id="commentForm" action="">
+  {% csrf_token %}
     <div class="m-4 w-100 bg-white rounded-lg border border-primary">
         <div class="py-2 px-4 bg-white rounded-t-lg">
+            {{ cform }}
             <textarea id="comment" rows="4" class="px-0 w-full text-sm text-gray-900 bg-white border-0" placeholder="Write your comment here..." required=""></textarea>
         </div>
         <div class="flex justify-end items-center py-2 px-3 border-t dark:border-primary">
@@ -107,6 +105,17 @@
             </button>
         </div>
     </div>
- </form>
+ </form> -->
+
+ <!-- {% for comment in data_comment %}
+    <div class="" >
+      <div class="">
+        <h5 class="">Username: {{comment.commenter}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Date Created: {{comment.date}}</h6>
+        <p class="card-text">Comment: {{comment.content}}</p>
+        <a class="btn btn-danger" href="{% url 'edukasi_item:delete' task.id %}">Delete</a>
+      </div>
+    </div>
+  {% endfor %} -->
 
 {% endblock content %}

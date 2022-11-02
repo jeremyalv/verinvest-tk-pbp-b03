@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+<title> Comment </title>
+{% endblock meta %}
+
+{% block content %}
+
+<h1>Comment</h1>
+
+<form method="POST" id="commentForm" action="">
+  {% csrf_token %}
+    <div class="m-4 w-100 bg-white rounded-lg border border-primary">
+        <div class="py-2 px-4 bg-white rounded-t-lg">
+            <!-- {{ cform }} -->
+            <textarea id="comment" rows="4" class="px-0 w-full text-sm text-gray-900 bg-white border-0" placeholder="Write your comment here..." required=""></textarea>
+        </div>
+        <div class="flex justify-end items-center py-2 px-3 border-t dark:border-primary">
+            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary">
+                Post comment
+            </button>
+        </div>
+    </div>
+ </form>
+
+
+{% endblock content %}

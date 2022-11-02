@@ -9,7 +9,7 @@ from edukasi_item.models import EdukasiComment
 from edukasi_item.forms import EducationForm, CommentForm
 
 def view_post(request, id):
-    post_item = Post.objects.filter(id=id).all()
+    post_item = Post.objects.filter(pk=id).all()
     context = {
         'post_item':post_item
     }
@@ -42,23 +42,46 @@ def post_json(request):
 # # @login_required
 # # @csrf_exempt
 def delete_post(request, id):
-    post = Post.objects.get(id=id, author=request.user)
+    post = Post.objects.get(pk=id, author=request.user)
     post.delete()
 
     return HttpResponseRedirect(reverse('collection:education'))
 
 # @login_required
 # @csrf_exempt
-def add_comment(request: HttpRequest):
-    if request.method == "POST":
-        post = request.kwargs["id"]
-        content = request.POST.get('content')
-        comment = EdukasiComment(
-            post = post,
-            commenter = request.user,
-            date_created = datetime.now(),
-            content = content,
-            upvotes = 0,
-        )
-    comment.save()
-    return HttpResponse(serializers.serialize("json", [comment]), content_type='application/json')
+
+# def add_comment(request: HttpRequest):
+#     if request.method == "POST":
+#         post = request.kwargs["id"]
+#         content = request.POST.get('content')
+#         comment = EdukasiComment(
+#             post = post,
+#             commenter = request.user,
+#             date_created = datetime.now(),
+#             content = content,
+#             upvotes = 0,
+#         )
+#     comment.save()
+#     return HttpResponse(serializers.serialize("json", [comment]), content_type='application/json')
+
+def add_comment(request):
+    cform = CommentForm()
+    if request.method == 'POST':
+        cform = CommentForm(request.POST)
+        if cform.is_valid():
+            comment = cform.save(commit=False)
+            comment.post =request.kwargs["id"]
+            comment.commenter = request.user
+            comment.upvotes = 0
+            comment.save()
+            return redirect('edukasi_item:view')
+
+    context = {'cform':cform}
+    return render(request, 'add_comment.html', context)
+
+def show_comment(request):
+    data_comment = EdukasiComment.objects.all()
+    context = {
+        'data_comment':data_comment,
+    }
+    return render(request, "edukasi_item.html", context)
