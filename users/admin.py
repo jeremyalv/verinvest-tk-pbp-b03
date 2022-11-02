@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import VerinvestUser
+from .models import CustomUser
 
-class VerinvestUserAdmin(UserAdmin):
-    model = VerinvestUser
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
 
-admin.site.register(VerinvestUser, VerinvestUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)

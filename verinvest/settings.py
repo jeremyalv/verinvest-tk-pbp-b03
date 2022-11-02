@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'forum_item',
     'edukasi_item',
     'about',
-    'users.apps.UsersConfig',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -138,4 +138,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'users.VerinvestUser'
+AUTH_USER_MODEL = 'users.CustomUser'

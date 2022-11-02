@@ -2,13 +2,32 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from users.models import VerinvestUser
+from users.models import CustomUser
 from django.contrib.auth.forms import UserCreationForm
 
 from profile_page.models import Profile
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required, permission_required
 
+
+def navigation(request):
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+
+        context = {
+            'user_loggedin': user_loggedin,
+            'username': request.user.get_username(),
+        }
+
+        return render(request, 'header.html', context)
+    
+    context = {
+        'user_loggedin': user_loggedin,
+    }
+
+    render(request, 'header.html', context)
 
 def index(request):
     user_loggedin = False
@@ -18,7 +37,7 @@ def index(request):
 
         context = {
             'user_loggedin': user_loggedin,
-            'username': request.user,
+            'username': request.user.get_username(),
         }
             
         return render(request, 'index.html', context)
