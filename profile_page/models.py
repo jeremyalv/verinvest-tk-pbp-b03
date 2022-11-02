@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from landing_page.models import CustomUser
 from collection.models import Post
 
-# Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     
-    avatar = models.FileField
-    occupation = models.TextField(max_length=32)
+    birth_date = models.DateField()
+    occupation = models.CharField(max_length=50)
+
