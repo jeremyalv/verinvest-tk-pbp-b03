@@ -1,9 +1,13 @@
+from pickle import NONE
+from types import NoneType
+from django.forms import NullBooleanField
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from .models import CustomUser
+# from .models import CustomUser
 from .forms import RegisterForm
+from profile_page.models import Profile
 from django.contrib.auth.decorators import login_required, permission_required
 
 
@@ -11,11 +15,15 @@ def navigation(request):
     user_loggedin = False
 
     if request.user.is_authenticated:
+        username = request.user
+        # user = CustomUser.objects.filter(username = user.username)
+        user = Profile.objects.get(user = request.user)
         user_loggedin = True
 
         context = {
             'user_loggedin': user_loggedin,
-            'username': request.user.get_username(),
+            'username': request.user,
+            'user': user,
         }
 
         return render(request, 'header.html', context)
@@ -27,7 +35,8 @@ def navigation(request):
     render(request, 'header.html', context)
 
 def index(request):
-    users = CustomUser.objects.all()
+    # users = CustomUser.objects.all()
+    users = Profile.objects.all()
     user_loggedin = False
 
     if request.user.is_authenticated:
@@ -62,12 +71,22 @@ def register(request):
         if form.is_valid():
             user = form.save()
 
-            CustomUser.objects.create(
-                user=user,
-                first_name=user.first_name,
-                last_name=user.last_name,
-                email=user.email,
-                is_expert=user.is_expert,
+            # custom_user = CustomUser.objects.create(
+            #     user=user,
+            #     first_name=user.first_name,
+            #     last_name=user.last_name,
+            #     email=user.email,
+            #     is_expert=user.is_expert,
+            # )
+
+            Profile.objects.create(
+                user = user,
+                first_name = user.first_name,
+                last_name = user.last_name,
+                email = user.email,
+                is_expert = user.is_expert,
+                birth_date = None,
+                occupation = None,
             )
 
             return HttpResponseRedirect(reverse('landing_page:login'))
@@ -105,7 +124,7 @@ def login_user(request):
 
     return render(request, 'login.html', context)
 
-@login_required()
+@login_required(login_url="{% url 'landing_page:login' %}")
 def logout_user(request):
     logout(request)
 

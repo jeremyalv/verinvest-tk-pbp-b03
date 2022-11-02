@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
+from profile_page.models import Profile
 from collection.models import Post
 from forum_item.models import ForumComment
 from forum_item.forms import ForumForm
@@ -31,10 +32,11 @@ def create_post(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
+        user_profile = Profile.objects.get(user = request.user)
 
         Post.objects.create(
             post_type='forum',
-            author=request.user,
+            author=user_profile,
             title=title,
             content=content,
             upvotes=0,
@@ -51,7 +53,8 @@ def create_post(request):
 @login_required(login_url='/login/')
 @csrf_exempt
 def delete_post(request, id):
-    post = Post.objects.get(id=id, author=request.user)
+    user_profile = Profile.objects.get(user=request.user)
+    post = Post.objects.get(id=id, author=user_profile)
     post.delete()
 
     return HttpResponseRedirect(reverse('collection:forum'))
