@@ -10,6 +10,7 @@ from profile_page.models import Profile
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Fortofolio
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 
 def navigation(request):
