@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-_=r*z-(mw)w(_5s02*k_-1(bxx23h!_4(b8$**r-%%t3y!_g2p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [f'verinvest.up.railway.app']
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
