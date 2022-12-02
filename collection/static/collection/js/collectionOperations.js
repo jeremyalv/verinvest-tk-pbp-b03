@@ -1,8 +1,9 @@
+// Run method
+createCollection();
 function createCollection() {
-    console.log("RUN CREATE COLLECTION");
+    
 
-    $.getJSON(`json/`, function(data) {
-        console.log("RUN GET");
+    $.getJSON(`${location.origin}/collections/json/`, function(data) {
         // Empty the collection containers, if they contain any items
         $("#forumCollectionBody").empty();
         $("#edukasiCollectionBody").empty();
@@ -13,7 +14,11 @@ function createCollection() {
 
         if (data.length != 0) {
             console.log("L: " + data.length);
+        } else {
+            console.log("DATA LENGTH 0")
         }
+
+        console.log(data)
         // Count the number of forum and edukasi posts
         for (let i = 0; i < data.length; i++) {
             let post_type = data[i].fields.post_type;
@@ -26,7 +31,7 @@ function createCollection() {
             // Append card item to appropriate collection
             let id = data[i].pk;
             let title = data[i].fields.title;
-            let username = data[i].fields.author.get_username();
+            let username = data[i].fields.author[0];
 
             let viewers = data[i].fields.viewers;
             let upvotes = data[i].fields.upvotes;
@@ -75,7 +80,7 @@ function createCollection() {
                     </div>
                 </div>
                 <div id="${post_type}Item-${id}-cta" class="self-center">
-                    <a href="{% url 'forum_item:view' ${id} %}" class="inline-flex self-center w-max items-center py-2 px-3 md:py-3 md:px-6 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+                    <a href="/collections/${post_type}/items/${id}/" class="inline-flex self-center w-max items-center py-2 px-3 md:py-3 md:px-6 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                         View Post
                         <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </a>
@@ -88,8 +93,5 @@ function createCollection() {
         }
     });
 }   
-
-// Run method
-createCollection();
 
 export { createCollection };
