@@ -59,6 +59,7 @@ def index(request):
         }
     return render(request, 'index.html', context)  
 
+@csrf_exempt
 def register(request):
     form = RegisterForm()
     user_loggedin = False

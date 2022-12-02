@@ -30,6 +30,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = [f'verinvest.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://verinvest.up.railway.app',
+]
+
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
