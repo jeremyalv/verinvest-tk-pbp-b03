@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-_=r*z-(mw)w(_5s02*k_-1(bxx23h!_4(b8$**r-%%t3y!_g2p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [f'verinvest.up.railway.app']
+# ALLOWED_HOSTS = [f'verinvest.up.railway.app']
+ALLOWED_HOSTS = []
 
 CSRF_TRUSTED_ORIGINS = [
     'https://verinvest.up.railway.app',

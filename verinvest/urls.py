@@ -21,10 +21,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls')),
-    path('flutter-auth/', include('authentication.urls')),
     path('collections/', include('collection.urls')),
     path('profile/', include('profile_page.urls')),
     path('about/', include('about.urls')),
     path('collections/forum/items/', include('forum_item.urls')),
     path('collections/education/items/', include('edukasi_item.urls')),
+    path('flutter-auth/', include('authentication.urls')),
 ]

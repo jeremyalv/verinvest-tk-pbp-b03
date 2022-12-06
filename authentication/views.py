@@ -7,8 +7,8 @@ from profile_page.models import Profile
 
 @csrf_exempt
 def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
+    username = request.POST.get('username')
+    password = request.POST.get('password')
     user = authenticate(username=username, password=password)
     
     if user is not None:
@@ -92,5 +92,5 @@ def register(request):
             }, status=200)
     else:
         return JsonResponse({
-            "status": "error",
+            "status": "error, not a POST request",
         }, status=401)
