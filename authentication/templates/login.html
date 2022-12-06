@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="loginPageContainer" class="flex flex-col items-center justify-center px-12">
+    <div id="loginPage" class="w-8/12">
+        <div id="loginHeader" class="pb-4 md:pb-12">
+            <h1 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-gray-900">Join us and ignite <span class="text-3xl md:text-4xl lg:text-5xl underline underline-offset-3 decoration-4 decoration-primary">smart discussions</span> nationwide.</h1>
+            <p class="text-lg font-normal text-gray-500 lg:text-xl">Here at Verinvest we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+        </div>
+
+        <form method="post" id="loginForm">
+            {% csrf_token %}
+            <div class="mb-6">
+                <label for="text" class="block mb-2 text-sm font-medium text-gray-900">
+                    Username
+                </label>
+                <input type="text" id="username" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="johndoe" required="">
+            </div> 
+            <div class="mb-6">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">
+                    Password
+                </label>
+                
+                <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5" placeholder="•••••••••" required="">
+            </div> 
+            <div class="mb-6">
+                <label for="text" class="block mb-2 text-sm font-medium text-gray-900">
+                    Don't have an account? Sign up <a href="{% url 'landing_page:register' %}" class = "hover:underline hover:decoration-primary font-bold">Here</a>.
+                </label>
+            </div> 
+            
+            <div class="flex justify-center items-center">
+                <button type="submit" name="submit" class="text-white bg-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
