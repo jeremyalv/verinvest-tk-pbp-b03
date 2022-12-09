@@ -34,5 +34,5 @@ def edit_profile(request):
 
 def get_profile_json(request):
     profile = Profile.objects.filter(pk=1)
-    
-    return HttpResponse(serializers.serialize("xml", profile), content_type="application/xml")
+
+    return HttpResponse(serializers.serialize("json", profile), content_type="application/json")
