@@ -41,14 +41,16 @@ def get_profile_json(request):
     #     email = "dummy@gmail.com",
     # )
 
-    profile = Profile.objects.create(
-                user = user,
-                first_name = user.first_name,
-                last_name = user.last_name,
-                email = user.email,
-                is_expert = user.is_staff,
-                birth_date = None,
-                occupation = None,
-            )
+    profile = Profile.objects.get(user = user)
+
+    # profile = Profile.objects.create(
+    #             user = user,
+    #             first_name = user.first_name,
+    #             last_name = user.last_name,
+    #             email = user.email,
+    #             is_expert = user.is_staff,
+    #             birth_date = None,
+    #             occupation = None,
+    #         )
 
     return HttpResponse(serializers.serialize("json", profile), content_type="application/json")
