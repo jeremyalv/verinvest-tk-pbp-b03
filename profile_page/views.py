@@ -2,6 +2,8 @@ from django.shortcuts import render
 from profile_page.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.core import serializers
 
 @login_required(login_url="{% url 'landing_page:login' %}")
 def show_profile(request):
@@ -29,3 +31,8 @@ def edit_profile(request):
         'user_loggedin' : user_loggedin
     }
     return render(request, "modify.html", context)
+
+def get_profile_json(request):
+    profile = Profile.objects.get(user = "dummy")
+
+    return HttpResponse(serializers.serialize("json", profile), content_type="application/json")
