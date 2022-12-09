@@ -33,12 +33,13 @@ def edit_profile(request):
     return render(request, "modify.html", context)
 
 def get_profile_json(request):
-    user = User.objects.create(
-        username = "dummy",
-        first_name = "John",
-        last_name = "Doe",
-        email = "dummy@gmail.com",
-    )
+    user = User.objects.get(username = "dummy")
+    # user = User.objects.create(
+    #     username = "dummy",
+    #     first_name = "John",
+    #     last_name = "Doe",
+    #     email = "dummy@gmail.com",
+    # )
 
     profile = Profile.objects.create(
                 user = user,
