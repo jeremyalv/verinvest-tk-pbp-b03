@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from profile_page.models import Profile
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.core import serializers
@@ -33,6 +33,15 @@ def edit_profile(request):
     return render(request, "modify.html", context)
 
 def get_profile_json(request):
-    profile = Profile.objects.filter(pk=1)
+    user = AnonymousUser()
+    profile = Profile.objects.create(
+                user = user,
+                first_name = user.first_name,
+                last_name = user.last_name,
+                email = user.email,
+                is_expert = user.is_expert,
+                birth_date = None,
+                occupation = None,
+            )
 
     return HttpResponse(serializers.serialize("json", profile), content_type="application/json")
