@@ -53,4 +53,4 @@ def get_profile_json(request):
     #             occupation = None,
     #         )
 
-    return HttpResponse(serializers.serialize("json", profile), content_type="application/json")
+    return HttpResponse(serializers.serialize("json", [profile]), content_type="application/json")
