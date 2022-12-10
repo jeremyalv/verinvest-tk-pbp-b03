@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.core import serializers
-from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -39,7 +38,6 @@ def create_post(request):
         Post.objects.create(
             post_type='forum',
             author=user_profile,
-            author_username=request.user.get_username(),
             author_username=request.user.get_username(),
             title=title,
             content=content,
