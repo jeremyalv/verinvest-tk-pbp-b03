@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -130,8 +131,14 @@ def viewuser(request):
     # return HttpResponse(serializers.serialize("json", user), content_type="application/json") 
 
 def get_json(request):
-<<<<<<< Updated upstream
-    posts = Post.objects.all()
+    if request.method == 'GET':
+        post_list = []
+        search_key = request.GET.get('search_key')
+
+        if search_key is None:
+            posts = Post.objects.all()
+        else:
+            posts = Post.objects.filter(title__icontains=search_key)
 
         return HttpResponse(serializers.serialize("json", posts, 
                                 use_natural_foreign_keys=True,
