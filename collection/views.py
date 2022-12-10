@@ -5,10 +5,14 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadReque
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
+<<<<<<< Updated upstream
+=======
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
+>>>>>>> Stashed changes
 
 from collection.models import Post
+from profile_page.models import Profile
 from profile_page.models import Profile
 
 def show_collection(request):
@@ -130,7 +134,29 @@ def viewuser(request):
 
     # return HttpResponse(serializers.serialize("json", user), content_type="application/json") 
 
+def viewuser(request):
+    post = Post.objects.get(pk=1)
+    user = Profile.objects.get(user=request.user)
+    
+    postjson = model_to_dict(post)
+    userjson = model_to_dict(user)
+
+    postjson["author"] = userjson
+
+    # Post JSON now has author with value json
+    return JsonResponse({'post': postjson})
+
+    # return HttpResponse(serializers.serialize("json", user), content_type="application/json") 
+
 def get_json(request):
+<<<<<<< Updated upstream
+    posts = Post.objects.all()
+
+    return HttpResponse(serializers.serialize("json", posts, 
+                        use_natural_foreign_keys=True,
+                        use_natural_primary_keys=True), 
+                        content_type="application/json")
+=======
     if request.method == 'GET':
         post_list = []
         search_key = request.GET.get('search_key')
@@ -144,6 +170,10 @@ def get_json(request):
                                 use_natural_foreign_keys=True,
                                 use_natural_primary_keys=True), 
                                 content_type="application/json")            
+
+    else:
+        return HttpResponseBadRequest("Bad request")
+>>>>>>> Stashed changes
 
     else:
         return HttpResponseBadRequest("Bad request")
