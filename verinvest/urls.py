@@ -26,4 +26,5 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('collections/forum/items/', include('forum_item.urls')),
     path('collections/education/items/', include('edukasi_item.urls')),
+    path('flutter-auth/', include('authentication.urls')),
 ]

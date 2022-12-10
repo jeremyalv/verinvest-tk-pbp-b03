@@ -1,5 +1,4 @@
-from pickle import NONE
-from types import NoneType
+
 from django.forms import NullBooleanField
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -9,6 +8,9 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
 from profile_page.models import Profile
 from django.contrib.auth.decorators import login_required, permission_required
+from .models import Fortofolio
+from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 
 def navigation(request):
@@ -58,6 +60,7 @@ def index(request):
         }
     return render(request, 'index.html', context)  
 
+@csrf_exempt
 def register(request):
     form = RegisterForm()
     user_loggedin = False
@@ -129,4 +132,48 @@ def logout_user(request):
     logout(request)
 
     return HttpResponseRedirect(reverse('landing_page:index'))
+
+
+@login_required(login_url='landing_page:login')
+def forto(request):
+    user_loggedin = False
+
+    if request.user.is_authenticated:
+        user_loggedin = True
+        
+        user = Profile.objects.get(user = request.user)
+        context = {
+            'user_loggedin': user_loggedin,
+            'first_name' : request.user.first_name,
+            'last_name' : request.user.last_name,
+            'username' : request.user.username,
+            
+        }
+            
+        return render(request, 'forto.html', context)
+    
+    context = { 'user_loggedin': user_loggedin }
+    return render(request, 'index.html', context) 
+
+def show_forto_json(request):
+    # mengembalikan semua data task dalam bentuk json (Task 6)
+    data = Fortofolio.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json") 
+
+@login_required(login_url='landing_page:login')
+def create_forto_modal(request):
+    if request.method == "POST":
+        print("ini")
+        user = User.objects.filter(username=request.user.username)
+        nama = request.POST.get('nama')
+        jumlah = request.POST.get('jumlah')
+        forto = Fortofolio(user=user, nama= nama, jumlah=jumlah)
+        forto.save()
+        return redirect('landing_page:forto')
+    return HttpResponse("")
+
+def delete_forto_ajax(request, id):
+    forto = Fortofolio.objects.get(id=id)
+    forto.delete()
+    return redirect('landing_page:forto')
 

@@ -13,8 +13,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('profile_page', '0001_initial'),
         ('collection', '0001_initial'),
+        ('profile_page', '0001_initial'),
     ]
 
     operations = [

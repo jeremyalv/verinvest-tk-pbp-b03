@@ -1,20 +1,7 @@
 // Run method
-<<<<<<< Updated upstream
-createCollection();
-function createCollection() {
-    
+let searchKey = $("#search_key").attr("searchKey")
 
-    $.getJSON(`${location.origin}/collections/json/`, function(data) {
-        // Empty the collection containers, if they contain any items
-        $("#forumCollectionBody").empty();
-        $("#edukasiCollectionBody").empty();
-        
-=======
-let searchKey = $("#search_query").attr("searchKey")
-console.log("SUBSTR: " + searchKey.substring(0,5));
-
-// If search key is none or an html object,
-if (searchKey == null || searchKey == "None" || searchKey.substring(0,2) == "<!") {
+if (searchKey === "None") {
     searchKey = "";
 }
 
@@ -31,7 +18,7 @@ function createCollection(search_key="") {
         if (raw.length != 0) {
             console.log("raw length: " + raw.length);
         } else {
-                console.log("raw LENGTH 0")
+            console.log("raw LENGTH 0")
         }
 
         console.log(`search_key: ${search_key}`)
@@ -42,18 +29,19 @@ function createCollection(search_key="") {
         if (search_key !== "") {
             data = raw.filter(item => item.fields.title.toLowerCase().includes(search_key.toLowerCase()));
         }
->>>>>>> Stashed changes
         
         let forumAmount = 0;
-        let educationAmount = 0;
+        let educationAmount = 0;    
 
+        // DEBUG
         if (data.length != 0) {
-            console.log("L: " + data.length);
+            console.log("data length: " + data.length);
         } else {
             console.log("DATA LENGTH 0")
         }
-
         console.log(data)
+
+
         // Count the number of forum and edukasi posts
         for (let i = 0; i < data.length; i++) {
             let post_type = data[i].fields.post_type;
