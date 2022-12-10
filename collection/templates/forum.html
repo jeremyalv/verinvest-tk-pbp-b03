@@ -57,7 +57,7 @@
     </div>
 
     <div id="collectionActions" class="flex flex-col justify-center items-center md:flex-row w-full md:w-6/12 pb-8 md:pb-16">
-        <span id="search_key" searchKey="{{ search_key }}"></span>
+        <span id="search_query" searchKey="{{ search_key }}"></span>
         <form method="GET" action="{% url 'collection:forum' %}" class="w-9/12 pb-8 md:pb-0 md:pr-4">   
             {% csrf_token %}
             <div class="relative">

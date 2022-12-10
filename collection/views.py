@@ -1,14 +1,18 @@
 import json
 from django.shortcuts import render
 from django.core import serializers
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseNotFound, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.forms.models import model_to_dict
 
 from collection.models import Post
+from profile_page.models import Profile
+
 
 def show_collection(request):
     if request.method == 'GET':
+        posts = Post.objects.all()
         search_key = request.GET.get('search_key')
 
         user_loggedin = False
@@ -19,6 +23,7 @@ def show_collection(request):
         context = {
             'user_loggedin': user_loggedin,
             'search_key': search_key,
+            'count': len(posts),
         }
         
         return render(request, 'collection.html', context)
@@ -111,6 +116,19 @@ def education_archive(request):
         return render(request, 'education.html', context)
     return HttpResponseBadRequest("Bad request")
 
+def viewuser(request):
+    post = Post.objects.get(pk=1)
+    user = Profile.objects.get(user=request.user)
+
+    postjson = model_to_dict(post)
+    userjson = model_to_dict(user)
+
+    postjson["author"] = userjson
+
+    # Post JSON now has author with value json
+    return JsonResponse({'post': postjson})
+
+    
 def get_json(request):
     if request.method == 'GET':
         search_key = request.GET.get('search_key')
