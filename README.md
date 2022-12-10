@@ -30,8 +30,8 @@ Berikut adalah modul yang akan kami implementasikan
    4. Landing Page / Home
 2. Profile Page (Alicia Kirana Utomo)
    1. Account information
-   2. Upvoted posts
-   3. Delete account
+   2. Edit account information
+   3. Upvoted posts
 3. Collections Page (Jeremy Alva Prathama)
    1. Search post
    2. Cards collection
