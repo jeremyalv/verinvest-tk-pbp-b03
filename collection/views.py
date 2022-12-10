@@ -1,5 +1,6 @@
 import json
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -114,12 +115,22 @@ def education_archive(request):
     return render(request, 'education.html', context)
 
 def get_json(request):
-    posts = Post.objects.all()
+    if request.method == 'GET':
+        post_list = []
+        search_key = request.GET.get('search_key')
+
+        if search_key is None:
+            posts = Post.objects.all()
+        else:
+            posts = Post.objects.filter(title__icontains=search_key)
 
         return HttpResponse(serializers.serialize("json", posts, 
-                        use_natural_foreign_keys=True,
-                        use_natural_primary_keys=True), 
-                        content_type="application/json")
+                                use_natural_foreign_keys=True,
+                                use_natural_primary_keys=True), 
+                                content_type="application/json")            
+
+    else:
+        return HttpResponseBadRequest("Bad request")
 
 def get_forum_json(request):
     posts = Post.objects.filter(post_type='forum')
