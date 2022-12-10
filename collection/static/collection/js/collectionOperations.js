@@ -1,24 +1,47 @@
 // Run method
-createCollection();
-function createCollection() {
-    
+let searchKey = $("#search_key").attr("searchKey")
 
-    $.getJSON(`${location.origin}/collections/json/`, function(data) {
+if (searchKey === "None") {
+    searchKey = "";
+}
+
+// Call createCollection with searchKey argument
+createCollection(searchKey);
+
+function createCollection(search_key="") {
+    $.getJSON(`${location.origin}/collections/json/`, function(raw) {
         // Empty the collection containers, if they contain any items
         $("#forumCollectionBody").empty();
         $("#edukasiCollectionBody").empty();
-        
+
+        // // DEBUG
+        // if (raw.length != 0) {
+        //     console.log("raw length: " + raw.length);
+        // } else {
+        //     console.log("raw LENGTH 0")
+        // }
+
+        // console.log(`search_key: ${search_key}`)
+        // console.log(raw)
+
+        // Filter data based on search_key
+        let data = raw;
+        if (search_key !== "") {
+            data = raw.filter(item => item.fields.title.toLowerCase().includes(search_key.toLowerCase()));
+        }
         
         let forumAmount = 0;
-        let educationAmount = 0;
+        let educationAmount = 0;    
 
-        if (data.length != 0) {
-            console.log("L: " + data.length);
-        } else {
-            console.log("DATA LENGTH 0")
-        }
+        // // DEBUG
+        // if (data.length != 0) {
+        //     console.log("data length: " + data.length);
+        // } else {
+        //     console.log("DATA LENGTH 0")
+        // }
+        // console.log(data)
 
-        console.log(data)
+
         // Count the number of forum and edukasi posts
         for (let i = 0; i < data.length; i++) {
             let post_type = data[i].fields.post_type;

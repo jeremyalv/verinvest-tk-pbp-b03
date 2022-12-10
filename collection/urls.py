@@ -1,5 +1,5 @@
 from django.urls import path, include
-from collection.views import (show_collection, forum_archive, education_archive, get_json, get_forum_json, get_education_json)
+from collection.views import (show_collection, search_collection, forum_archive, education_archive, get_json, get_forum_json, get_education_json)
 
 app_name = 'collection'
 
