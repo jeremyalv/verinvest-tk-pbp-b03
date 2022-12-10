@@ -1,16 +1,4 @@
 // Run method
-<<<<<<< Updated upstream
-createCollection();
-function createCollection() {
-    
-
-function createCollection(search_key="") {
-    $.getJSON(`${location.origin}/collections/json/`, function(raw) {
-        // Empty the collection containers, if they contain any items
-        $("#forumCollectionBody").empty();
-        $("#edukasiCollectionBody").empty();
-        
-=======
 let searchKey = $("#search_query").attr("searchKey")
 console.log("SUBSTR: " + searchKey.substring(0,5));
 
@@ -43,7 +31,6 @@ function createCollection(search_key="") {
         if (search_key !== "") {
             data = raw.filter(item => item.fields.title.toLowerCase().includes(search_key.toLowerCase()));
         }
->>>>>>> Stashed changes
         
         let forumAmount = 0;
         let educationAmount = 0;
