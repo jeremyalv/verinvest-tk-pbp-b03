@@ -14,15 +14,15 @@ function createCollection(search_key="") {
         $("#forumCollectionBody").empty();
         $("#edukasiCollectionBody").empty();
 
-        // // DEBUG
-        // if (raw.length != 0) {
-        //     console.log("raw length: " + raw.length);
-        // } else {
-        //     console.log("raw LENGTH 0")
-        // }
+        // DEBUG
+        if (raw.length != 0) {
+            console.log("raw length: " + raw.length);
+        } else {
+            console.log("raw LENGTH 0")
+        }
 
-        // console.log(`search_key: ${search_key}`)
-        // console.log(raw)
+        console.log(`search_key: ${search_key}`)
+        console.log(raw)
 
         // Filter data based on search_key
         let data = raw;
@@ -33,13 +33,13 @@ function createCollection(search_key="") {
         let forumAmount = 0;
         let educationAmount = 0;    
 
-        // // DEBUG
-        // if (data.length != 0) {
-        //     console.log("data length: " + data.length);
-        // } else {
-        //     console.log("DATA LENGTH 0")
-        // }
-        // console.log(data)
+        // DEBUG
+        if (data.length != 0) {
+            console.log("data length: " + data.length);
+        } else {
+            console.log("DATA LENGTH 0")
+        }
+        console.log(data)
 
 
         // Count the number of forum and edukasi posts
