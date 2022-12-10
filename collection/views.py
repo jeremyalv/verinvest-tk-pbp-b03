@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 
 from collection.models import Post
+from profile_page.models import Profile
 
 def show_collection(request):
     if request.method == 'GET':
@@ -114,15 +115,23 @@ def education_archive(request):
 
     return render(request, 'education.html', context)
 
-def get_json(request):
-    if request.method == 'GET':
-        post_list = []
-        search_key = request.GET.get('search_key')
+def viewuser(request):
+    post = Post.objects.get(pk=1)
+    user = Profile.objects.get(user=request.user)
+    
+    postjson = model_to_dict(post)
+    userjson = model_to_dict(user)
 
-        if search_key is None:
-            posts = Post.objects.all()
-        else:
-            posts = Post.objects.filter(title__icontains=search_key)
+    postjson["author"] = userjson
+
+    # Post JSON now has author with value json
+    return JsonResponse({'post': postjson})
+
+    # return HttpResponse(serializers.serialize("json", user), content_type="application/json") 
+
+def get_json(request):
+<<<<<<< Updated upstream
+    posts = Post.objects.all()
 
         return HttpResponse(serializers.serialize("json", posts, 
                                 use_natural_foreign_keys=True,

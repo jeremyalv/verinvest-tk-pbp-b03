@@ -11,5 +11,6 @@ urlpatterns = [
     path('education/', education_archive, name='education'),
     path('education/json/', get_education_json, name='education_json'),
     path('forum/items/', include('forum_item.urls'), name='collection_forum_items'),
+    path('viewuser', viewuser, name='viewuser'),
     # TODO ADD EDUC
 ]

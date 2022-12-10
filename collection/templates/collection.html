@@ -18,6 +18,15 @@
     </div>
 
     <div id="collectionSearch" class="w-full md:w-6/12 pb-12 md:pb-24">
+<<<<<<< Updated upstream
+        <form>   
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+=======
+        <!-- For passing data to views -->
+        <span id="search_query" searchKey="{{ search_key }}"></span>
+        <form method="GET" action="{% url 'collection:show_collection' %}">   
+            {% csrf_token %}
+>>>>>>> Stashed changes
         <!-- For passing data to views -->
         <span id="search_query" searchKey="{{ search_key }}"></span>
         <form method="GET" action="{% url 'collection:show_collection' %}">   
