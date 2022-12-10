@@ -7,8 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 
 from collection.models import Post
-from profile_page.models import Profile
-
 
 def show_collection(request):
     if request.method == 'GET':
@@ -107,43 +105,21 @@ def education_archive(request):
         if request.user.is_authenticated:
             user_loggedin = True
 
-        context = {
-            'user_loggedin': user_loggedin,
-            'search_key': search_key,
-            'count': edu_posts.count(),
-        }
-        
-        return render(request, 'education.html', context)
-    return HttpResponseBadRequest("Bad request")
+    context = {
+        'forum_posts': education_posts,
+        'count': education_posts.count(),
+         'user_loggedin': user_loggedin,
+    }
 
-def viewuser(request):
-    post = Post.objects.get(pk=1)
-    user = Profile.objects.get(user=request.user)
+    return render(request, 'education.html', context)
 
-    postjson = model_to_dict(post)
-    userjson = model_to_dict(user)
-
-    postjson["author"] = userjson
-
-    # Post JSON now has author with value json
-    return JsonResponse({'post': postjson})
-
-    
 def get_json(request):
-    if request.method == 'GET':
-        search_key = request.GET.get('search_key')
-
-        if search_key is None:
-            posts = Post.objects.all()
-        else:
-            posts = Post.objects.filter(title__icontains=search_key)
+    posts = Post.objects.all()
 
         return HttpResponse(serializers.serialize("json", posts, 
                         use_natural_foreign_keys=True,
                         use_natural_primary_keys=True), 
                         content_type="application/json")
-    else:
-        return HttpResponseBadRequest("Bad request")
 
 def get_forum_json(request):
     posts = Post.objects.filter(post_type='forum')
