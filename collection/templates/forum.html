@@ -58,8 +58,14 @@
     </div>
 
     <div id="collectionActions" class="flex flex-col justify-center items-center md:flex-row w-full md:w-6/12 pb-8 md:pb-16">
+<<<<<<< Updated upstream
         <form class="w-9/12 mb-8 md:mb-0 md:mr-12">   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+=======
+        <span id="search_query" searchKey="{{ search_key }}"></span>
+        <form method="GET" action="{% url 'collection:forum' %}" class="w-9/12 pb-8 md:pb-0 md:pr-4">   
+            {% csrf_token %}
+>>>>>>> Stashed changes
             <div class="relative">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>

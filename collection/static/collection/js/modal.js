@@ -47,7 +47,13 @@ modalCreatePost.addEventListener('click', () => {
                 'title': title,
                 'content': content,
             },
-            success: [createCollection, function () { console.log ("post success")}],
+            success: [
+            function() {
+                createCollection("");
+            }, 
+            function () { 
+                console.log ("post success")
+            }],
         });
 
 

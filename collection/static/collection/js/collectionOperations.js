@@ -1,4 +1,5 @@
 // Run method
+<<<<<<< Updated upstream
 createCollection();
 function createCollection() {
     
@@ -8,6 +9,40 @@ function createCollection() {
         $("#forumCollectionBody").empty();
         $("#edukasiCollectionBody").empty();
         
+=======
+let searchKey = $("#search_query").attr("searchKey")
+console.log("SUBSTR: " + searchKey.substring(0,5));
+
+// If search key is none or an html object,
+if (searchKey == null || searchKey == "None" || searchKey.substring(0,2) == "<!") {
+    searchKey = "";
+}
+
+// Call createCollection with searchKey argument
+createCollection(searchKey);
+
+function createCollection(search_key="") {
+    $.getJSON(`${location.origin}/collections/json/`, function(raw) {
+        // Empty the collection containers, if they contain any items
+        $("#forumCollectionBody").empty();
+        $("#edukasiCollectionBody").empty();
+
+        // DEBUG
+        if (raw.length != 0) {
+            console.log("raw length: " + raw.length);
+        } else {
+                console.log("raw LENGTH 0")
+        }
+
+        console.log(`search_key: ${search_key}`)
+        console.log(raw)
+
+        // Filter data based on search_key
+        let data = raw;
+        if (search_key !== "") {
+            data = raw.filter(item => item.fields.title.toLowerCase().includes(search_key.toLowerCase()));
+        }
+>>>>>>> Stashed changes
         
         let forumAmount = 0;
         let educationAmount = 0;
