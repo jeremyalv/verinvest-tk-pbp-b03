@@ -30,7 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [f'verinvest.up.railway.app']
 
-
 CSRF_TRUSTED_ORIGINS = [
     'https://verinvest.up.railway.app',
 ]
