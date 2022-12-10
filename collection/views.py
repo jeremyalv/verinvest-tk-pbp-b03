@@ -1,13 +1,10 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
-<<<<<<< Updated upstream
-=======
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
->>>>>>> Stashed changes
 
 from collection.models import Post
 from profile_page.models import Profile
@@ -90,14 +87,6 @@ def viewuser(request):
     # return HttpResponse(serializers.serialize("json", user), content_type="application/json") 
 
 def get_json(request):
-<<<<<<< Updated upstream
-    posts = Post.objects.all()
-
-    return HttpResponse(serializers.serialize("json", posts, 
-                        use_natural_foreign_keys=True,
-                        use_natural_primary_keys=True), 
-                        content_type="application/json")
-=======
     if request.method == 'GET':
         post_list = []
         search_key = request.GET.get('search_key')
@@ -114,7 +103,6 @@ def get_json(request):
 
     else:
         return HttpResponseBadRequest("Bad request")
->>>>>>> Stashed changes
 
 def get_forum_json(request):
     posts = Post.objects.filter(post_type='forum')
