@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from profile_page.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -43,3 +43,5 @@ def edit_firstname(request):
     profile = Profile.objects.get(user = user)
 
     profile.first_name = request.first_name
+
+    return redirect('profile_page:show_profile')
