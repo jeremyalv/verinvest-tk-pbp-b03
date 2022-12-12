@@ -163,11 +163,10 @@ def show_forto_json(request):
 @login_required(login_url='landing_page:login')
 def create_forto_modal(request):
     if request.method == "POST":
-        print("ini")
-        user = User.objects.filter(username=request.user.username)
+
         nama = request.POST.get('nama')
         jumlah = request.POST.get('jumlah')
-        forto = Fortofolio(user=user, nama= nama, jumlah=jumlah)
+        forto = Fortofolio(user=request.user, nama= nama, jumlah=jumlah)
         forto.save()
         return redirect('landing_page:forto')
     return HttpResponse("")
