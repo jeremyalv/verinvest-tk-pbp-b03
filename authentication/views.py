@@ -33,6 +33,8 @@ def login(request):
         return JsonResponse({
             "status": False,
             "message": "Failed to login, check your email or password",
+            "username" : username,
+            "password" : password
         }, status=401)
 
 @csrf_exempt
