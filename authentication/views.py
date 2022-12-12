@@ -9,6 +9,7 @@ from profile_page.models import Profile
 def login(request):
     username = request.POST.get('username')
     password = request.POST.get('password')
+    print(request.POST.get('username'))
     user = authenticate(username=username, password=password)
     
     if user is not None:
@@ -20,6 +21,8 @@ def login(request):
                 "status": True,
                 "message": "Successfully logged in!",
                 # TODO insert any data to be passed to flutter
+                "username" : username,
+                "password" : password
             }, status=200)
         else:
             return JsonResponse({
@@ -52,7 +55,7 @@ def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
+   
         # TODO possible bug due to saving user as Profile object?
         if User.objects.get(username=username).exists():
             # If user has registered
