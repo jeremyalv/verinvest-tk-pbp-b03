@@ -56,7 +56,7 @@ def edit_lastname(request):
     user = User.objects.get(username = "dummy")
     profile = Profile.objects.get(user = user)
 
-    profile.first_name = ast.literal_eval(request.body.decode('utf-8'))["name"]
+    profile.last_name = ast.literal_eval(request.body.decode('utf-8'))["name"]
     profile.save()
 
     return redirect('profile_page:get_profile_json')
