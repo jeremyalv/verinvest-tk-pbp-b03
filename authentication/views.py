@@ -7,8 +7,8 @@ from profile_page.models import Profile
 
 @csrf_exempt
 def login(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
+    username = request.POST['username']
+    password = request.POST['password']
     print(request.POST.get('username'))
     user = authenticate(username=username, password=password)
     
